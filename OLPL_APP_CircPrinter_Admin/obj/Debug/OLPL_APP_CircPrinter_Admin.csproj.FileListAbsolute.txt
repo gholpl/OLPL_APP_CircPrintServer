@@ -1,0 +1,28 @@
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.exe.config
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.exe
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.csprojResolveAssemblyReference.cache
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.Form1.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.csproj.GenerateResource.Cache
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.exe
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.templeteName.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.elementAdd.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\BarcodeLib.dll
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\BarcodeLib.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.exe.config
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.exe
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.csprojResolveAssemblyReference.cache
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.exe
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\BarcodeLib.dll
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.dll
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\BarcodeLib.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.elementAdd.resources
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.Form1.resources
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.templeteName.resources
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.csproj.GenerateResource.Cache
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.dll
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.pdb

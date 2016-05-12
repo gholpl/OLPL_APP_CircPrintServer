@@ -1,0 +1,38 @@
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.csprojResolveAssemblyReference.cache
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Form1.resources
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Properties.Resources.resources
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.csproj.GenerateResource.Cache
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.exe.config
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.exe
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\BarcodeLib.dll
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\DLL_CircPrintServer.dll
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\BarcodeLib.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\DLL_CircPrintServer.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.exe
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer_SetDeps.exe
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\OLPL_APP_CircPrinter_Admin.exe
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer_SetDeps.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\OLPL_APP_CircPrinter_Admin.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.CCRefund.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.exe.config
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.exe
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer_SetDeps.exe
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\BarcodeLib.dll
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\DLL_CircPrintServer.dll
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\OLPL_APP_CircPrinter_Admin.exe
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer_SetDeps.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\BarcodeLib.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\DLL_CircPrintServer.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\OLPL_APP_CircPrinter_Admin.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.csprojResolveAssemblyReference.cache
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Form1.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.CCRefund.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Properties.Resources.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.csproj.GenerateResource.Cache
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.exe
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.formPOSPayment.resources
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.AskTransitLibrary.resources

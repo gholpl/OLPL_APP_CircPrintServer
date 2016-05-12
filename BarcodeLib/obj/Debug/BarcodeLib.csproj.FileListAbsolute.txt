@@ -1,0 +1,15 @@
+T:\Projects\OLPL_APP_CircPrintServer\BarcodeLib\bin\Debug\BarcodeLib.dll
+T:\Projects\OLPL_APP_CircPrintServer\BarcodeLib\bin\Debug\BarcodeLib.pdb
+T:\Projects\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.csprojResolveAssemblyReference.cache
+T:\Projects\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.dll
+T:\Projects\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\bin\Debug\BarcodeLib.dll
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\bin\Debug\BarcodeLib.pdb
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.csprojResolveAssemblyReference.cache
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.dll
+T:\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\bin\Debug\BarcodeLib.dll
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\bin\Debug\BarcodeLib.pdb
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.csprojResolveAssemblyReference.cache
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.dll
+\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\BarcodeLib\obj\Debug\BarcodeLib.pdb
