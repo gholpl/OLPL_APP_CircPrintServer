@@ -33,8 +33,9 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
         {
                 string fileloc = "";
                 List<templatesClass> tc = new List<templatesClass>();
-                if (fc.tb_file_temp.Text.Contains("<exe>")) { fileloc = fc.tb_file_temp.Text.Replace("<exe>", fc.pathEXE) + "\\"; }
-                else { fileloc = fc.tb_file_temp.Text + "\\"; }
+            //if (fc.tb_file_temp.Text.Contains("<exe>")) { fileloc = fc.tb_file_temp.Text.Replace("<exe>", fc.pathEXE) + "\\"; }
+            //else { fileloc = fc.tb_file_temp.Text + "\\"; }
+            fileloc = fixVars(fc.tb_file_temp.Text);
                 string[] array1 = Directory.GetFiles(fileloc, "*.template");
                 templatesClass tc1 = new templatesClass();
                 tc1.name = "Add New Template";
@@ -120,7 +121,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
         {
             try
             {
-                List<modelSettings> set1 =  ControlSettings.readSettingFile(fc.pathEXE);
+                List<modelSettings> set1 =  ControlSettings.readSettingFile(fixVars("<ProgramData>\\CircPrintSoftware"));
 
                 foreach(modelSettings s1 in set1)
                 {
@@ -308,7 +309,8 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         if (s1.name.Contains("POSEmailEnable")) { fc.cbPOSEmailEnable.Checked = bool.Parse(s1.value); }
                         if (s1.name.Contains("POSServerEmailAPI")) { fc.tbPOSServerEmailAPI.Text = s1.value; }
                         if (s1.name.Contains("POSServerEmailRefund")) { fc.tbPOSServerEmailRefund.Text = s1.value; }
-
+                        if (s1.name.Contains("POSDataFolder")) { fc.tbPOSDataFolder.Text = s1.value; }
+                        if (s1.name.Contains("POSDebugLogging")) { fc.cbPOSDebugLogging.Checked = bool.Parse(s1.value); }
                     }
                     else if (s1.name.Contains("SIP"))
                     {
@@ -316,6 +318,12 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         if (s1.name.Contains("SIPServerPort")) { fc.tbSIPServerPassword.Text = s1.value; }
                         if (s1.name.Contains("SIPUserName")) { fc.tbSIPUserName.Text = s1.value; }
                         if (s1.name.Contains("SIPUserPassword")) { fc.tbSIPUserPassword.Text = s1.value; }
+                    }
+                    else if (s1.name.Contains("Error"))
+                    {
+                        if (s1.name.Contains("ErrorEMailEnable")) { fc.cbErrorEMailEnable.Checked = bool.Parse(s1.value); }
+                        if (s1.name.Contains("ErrorEMailServer")) { fc.tbErrorEmailServer.Text = s1.value; }
+                        if (s1.name.Contains("ErrorEMailAddress")) { fc.tbErrorEmalAddress.Text = s1.value; }
                     }
                     else
                     {
@@ -360,8 +368,9 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
         static internal void writeTemplateFile(Form1 fc)
         {
             string fileloc = "";
-            if (fc.tb_file_temp.Text.Contains("<exe>")) { fileloc = fc.tb_file_temp.Text.Replace("<exe>", fc.pathEXE) + "\\"; }
-            else { fileloc = fc.tb_file_temp.Text + "\\"; }
+            //if (fc.tb_file_temp.Text.Contains("<exe>")) { fileloc = fc.tb_file_temp.Text.Replace("<exe>", fc.pathEXE) + "\\"; }
+            //else { fileloc = fc.tb_file_temp.Text + "\\"; }
+            fileloc = fixVars(fc.tb_file_temp.Text);
             //File.Delete(fileloc);
             using (XmlWriter writer = XmlWriter.Create(fileloc + fc.templateName + ".template"))
             {
@@ -402,13 +411,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
         {
             try
             {
-                File.Delete(fc.pathEXE + "\\program.settings");
+                File.Delete(fixVars("<ProgramData>\\CircPrintSoftware") + "\\program.settings");
             }
             catch (Exception e)
             {
                 MessageBox.Show("User Does Not have rights to the folder" + Environment.NewLine + e.Message);
             }
-            INIFile setting = new INIFile(fc.pathEXE + "\\program.settings");
+            INIFile setting = new INIFile(fixVars("<ProgramData>\\CircPrintSoftware") + "\\program.settings");
             setting.Write("General", "adminDebugMode", fc.tbAdminMode.Value.ToString());
             setting.Write("General", "recieptCheckoutAsk", fc.tbAskCheckout.Value.ToString());
             setting.Write("General", "recieptUserAsk", fc.tbAskUser.Value.ToString());
@@ -449,10 +458,15 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             setting.Write("POS", "POSEmailEnable", fc.cbPOSEmailEnable.Checked.ToString());
             setting.Write("POS", "POSServerEmailAPI", fc.tbPOSServerEmailAPI.Text);
             setting.Write("POS", "POSServerEmailRefund", fc.tbPOSServerEmailRefund.Text);
+            setting.Write("POS", "POSDataFolder", fc.tbPOSDataFolder.Text);
+            setting.Write("POS", "POSDebugLogging", fc.cbPOSDebugLogging.Checked.ToString());
             setting.Write("SIPSettings", "SIPServerIP", fc.tbSIPServerName.Text);
             setting.Write("SIPSettings", "SIPServerPort", fc.tbSIPServerPassword.Text);
             setting.Write("SIPSettings", "SIPUserName", fc.tbSIPUserName.Text);
             setting.Write("SIPSettings", "SIPUserPassword", fc.tbSIPUserPassword.Text);
+            setting.Write("ErrorReporting", "ErrorEMailEnable", fc.cbErrorEMailEnable.Checked.ToString());
+            setting.Write("ErrorReporting", "ErrorEMailServer", fc.tbErrorEmailServer.Text);
+            setting.Write("ErrorReporting", "ErrorEMailAddress", fc.tbErrorEmalAddress.Text);
             if (fc.sList.Count > 0)
             {
                 foreach (settingsClass cs1 in fc.sList)
@@ -472,6 +486,11 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             if (input.Contains("<exe>"))
             {
                 data = input.Replace("<exe>", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
+                none = false;
+            }
+            if (input.Contains("<ProgramData>"))
+            {
+                data = input.Replace("<ProgramData>", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\");
                 none = false;
             }
             if (input.Contains("<longdate>"))

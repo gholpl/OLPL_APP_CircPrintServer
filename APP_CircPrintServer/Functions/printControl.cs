@@ -99,7 +99,7 @@ namespace APP_CircPrintServer.Functions
             float width = 270.0F;
             float height = 0F;
             string data1 = "";
-            Debugger.Launch();
+           
             StringFormat drawFormatCenter = new StringFormat();
             drawFormatCenter.Alignment = StringAlignment.Center;
             StringFormat drawFormatLeft = new StringFormat();
@@ -358,6 +358,18 @@ namespace APP_CircPrintServer.Functions
                                 }
 
                             }
+                        }
+                        int size = 0;
+                        if (int.TryParse(l1.data, out size))
+                        {
+                            string newText = "";
+                            int count = 0;
+                            foreach (char c in text)
+                            {
+                                if (count < size) { newText = newText + c; }
+                                count++;
+                            }
+                            text = newText;
                         }
                         y += l1.spaceTop;
                         if (l1.align == "Right")
@@ -624,7 +636,7 @@ namespace APP_CircPrintServer.Functions
 
                             if (line.Contains("Transit to: "))
                             {
-                                // Debugger.Launch();
+                                 //Debugger.Launch();
                                 //FileControl.fileWriteLog("TT" + FileControl.readTransitTo(mS2, line.Replace("Transit to: ", ""),"name"), mS2);
                                 if (line.ToUpper().Contains("ILL_LIBS"))
                                 {
@@ -636,7 +648,9 @@ namespace APP_CircPrintServer.Functions
                                         if (line2.ToUpper().Contains("ITEM ID")) { idItem = line2.Split(',')[0].Replace("Item ID: ", "").Trim(); }
                                     }
                                     controlSIP cSIP = new controlSIP();
-                                    cSIP.checkoutItem(idUser, idItem, mS2);
+                                    string dataDue = cSIP.checkoutItem(idUser, idItem, mS2);
+                                    if (dataDue.ToUpper().Contains("NONE")) { MessageBox.Show("Item not Checked out.  Please check out."); }
+                                    else { text = data1 + " " + dataDue; }
                                 }
                             }
                         }
@@ -1391,6 +1405,11 @@ namespace APP_CircPrintServer.Functions
             {
                 //MessageBox.Show(data);
                 data = data + l1.data.Replace("<exe>", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
+                none = false;
+            }
+            if (l1.data.Contains("<ProgramData>"))
+            {
+                data = data + l1.data.Replace("<ProgramData>", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\");
                 none = false;
             }
             if (l1.data.Contains("<longdate>"))

@@ -6,42 +6,134 @@ using System.Threading.Tasks;
 using APP_CircPrintServer.Models;
 using System.Collections.Specialized;
 using System.Net;
+using System.IO;
+using System.Diagnostics;
 
 namespace APP_CircPrintServer.Functions
 {
     class controlPOS
     {
-        internal static int getTransID(modelSettings1 mS, modelPOSTrans mPOS)
+        static string error = "";
+        internal static void runBackupFiles(modelSettings1 mS)
         {
+                string fileName = FileControl.fixVars(mS.POSDataFolder + "dataPOSTrans.data");
+                if (File.Exists(fileName))
+                {
+                    //Debugger.Launch();
+                    string[] strFile = File.ReadAllLines(fileName);
+                    File.Delete(fileName);
+                    foreach (string strLine in strFile)
+                    {
+
+                        modelPOSTrans mPOS = new modelPOSTrans();
+                        int countEl = 1;
+                        foreach (string strElement in strLine.Split('|'))
+                        {
+                            if (countEl == 1) { mPOS.transID = double.Parse(strElement); }
+                            if (countEl == 2) { mPOS.transDate = strElement; }
+                            if (countEl == 3)
+                            {
+                                if (strElement.Length < 4)
+                                {
+                                    foreach (string strElement2 in strLine.Split('|'))
+                                    {
+                                        if (strElement2.ToUpper().Contains("OPERATOR ID:")) { mPOS.operatorID = strElement2.Replace("Operator ID: ", string.Empty); }
+                                    }
+                                    if (mPOS.operatorID == null) { mPOS.operatorID = "Unknown"; }
+                                }
+                                else { mPOS.operatorID = strElement; }
+                            }
+                            if (countEl == 4) { mPOS.userID = strElement; }
+                            if (countEl == 5) { mPOS.compName = strElement; }
+                            if (countEl == 6) { mPOS.stationType = strElement; }
+                            if (countEl == 7) { mPOS.transType = strElement; }
+                            if (countEl > 7) { mPOS.strData = mPOS.strData + strElement + "|"; }
+                            countEl++;
+                        }
+                        getTransID(mS, mPOS);
+                    }
+
+                }
+               
+        }
+        internal static double getTransID(modelSettings1 mS, modelPOSTrans mPOS)
+        {
+            error = "";
+            string strTransLine = DateTime.Now + "|" + mPOS.operatorID + "|" + mPOS.userID + "|" + mS.machineName + "|" + mPOS.stationType + "|" + mPOS.transType + "|" + mPOS.strData;
             string result = "";
+            double ret = 1111111111;
             try
             {
-                
                 using (WebClient client = new WebClient { UseDefaultCredentials = true })
                 {
 
-                    byte[] response = client.UploadValues(mS.POSServerAPI+ "/postranscreate", new NameValueCollection()
+                    byte[] response = client.UploadValues(mS.POSServerAPI + "/postranscreate", new NameValueCollection()
                 {
+                        {"transID",mPOS.transID.ToString() },
                     { "operatorID", mPOS.operatorID },
                     { "userID", mPOS.userID },
                     { "compName", mS.machineName },
                     { "stationType", mPOS.stationType },
                     { "strData", mPOS.strData },
-                    { "transType", mPOS.transType }
+                    { "transType", mPOS.transType },
+                        { "transDate", mPOS.transDate }
                 });
 
                     result = System.Text.Encoding.UTF8.GetString(response);
+                    //Debugger.Launch();
+                    double res = 0;
+                    result = result.Replace("\"",string.Empty);
+                    if (double.TryParse(result,out res))
+                    {
+                        if(mS.POSDebugLogging) { FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + " - " + mPOS.compName + " Created Trans=" + strTransLine + "|" + result); }
+                    }
+                    else
+                    {
+                        
+                        if (mPOS.transID < 1)
+                        {
+                            result = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        }
+                        else { error = result; result = mPOS.transID.ToString(); }
+                        if (!error.Contains("Duplicate"))
+                        {
+                            strTransLine = result + "|" + strTransLine;
+                            FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + " - " + mPOS.compName + " Duplicate/Error API Trans=" + strTransLine + "|" + result);
+                            FileControl.writeDataLine(mS, "dataPOSTrans.data", strTransLine);
+                        }
+                        FileControl.fileWriteLog(DateTime.Now + " - " + mPOS.compName + " Error Creating Trans=" + strTransLine + " " + error, mS);
+                    }
+                    ret = double.Parse(result);
                 }
             }
-            catch (Exception e1) { FileControl.fileWriteLog(e1.ToString(), mS); return 0; }
-            return int.Parse(result);
+            catch (Exception e1)
+            {
+                FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-" + Environment.MachineName + " - " + mPOS.compName + " Error Coding Trans=" + strTransLine + "|" + result);
+                FileControl.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " - " + mPOS.compName + " Get transID problem " + e1.ToString() + " -- " + strTransLine, mS);
+                if (mPOS.transID < 1)
+                {
+                    result = DateTime.Now.ToString("yyyyMMddHHmmss");
+                }
+                else { error = result; result = mPOS.transID.ToString(); }
+                strTransLine = result + "|" + strTransLine;
+                FileControl.writeDataLine(mS, "dataPOSTrans.data", strTransLine);
+                ret = long.Parse(result);
+            }
+           
+            return ret;
         }
         internal static void postTransLine(modelSettings1 mS, modelPOSTransLine mPOS)
         {
             string result = "";
+            string strTransLine = "";
             try
             {
-
+                
+                strTransLine = DateTime.Now + "|" + mPOS.idTrans.ToString() + "|" + mPOS.idLine.ToString() + "|" + mPOS.itemID + "|" +
+                     mPOS.itemTitle + "|" + mPOS.itemCallNumber + "|" + mPOS.itemAuthor + "|" + mPOS.itemQuantity.ToString() + "|" + mPOS.itemPrice.ToString() + "|" +
+                     mPOS.paymentType.ToString() + "|" + mPOS.paymentAmount.ToString() + "|" + mPOS.paymentChange.ToString() + "|" + mPOS.paymentTotal.ToString() + "|" +
+                     mPOS.billReason.ToString() + "|" + mPOS.billTotal.ToString();
+            
                 using (WebClient client = new WebClient { UseDefaultCredentials = true })
                 {
 
@@ -62,12 +154,23 @@ namespace APP_CircPrintServer.Functions
                     { "billReason", mPOS.billReason.ToString() },
                     { "billTotal", mPOS.billTotal.ToString() }
                 });
-
                     result = System.Text.Encoding.UTF8.GetString(response);
+                    result = result.Replace("\\", "");
+                    if (result != "\"0\"")
+                    {
+                        FileControl.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " Error Creating TransLine=" + strTransLine + " -- " + result, mS);
+                        FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-" + Environment.MachineName + " Duplicate/Error API TransLine=" + strTransLine + "|" + result);
+                        FileControl.writeDataLine(mS, "dataPOSTransLine.data", strTransLine);
+                    }
+                    else { if (mS.POSDebugLogging) { FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-" + Environment.MachineName + " Created TransLine=" + strTransLine + "|" + result); } }
                 }
             }
-            catch (Exception e1) { FileControl.fileWriteLog(e1.ToString(), mS); }
-            //return int.Parse(result);
+            catch (Exception e1)
+            {
+                FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-"+Environment.MachineName + " Error Coding TransLine=" + strTransLine + "|" + e1.ToString());
+                FileControl.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " Create transline problem " + e1.ToString() + " -- " + strTransLine, mS);
+                FileControl.writeDataLine(mS, "dataPOSTransLine.data", strTransLine);
+            }
         }
         internal static void closeTrans(modelSettings1 mS, modelPOSTrans mPOS)
         {
@@ -86,10 +189,10 @@ namespace APP_CircPrintServer.Functions
                     result = System.Text.Encoding.UTF8.GetString(response);
                 }
             }
-            catch (Exception e1) { FileControl.fileWriteLog(e1.ToString(), mS); }
+            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Close trans problem " + e1.ToString(), mS); }
             //return int.Parse(result);
         }
-        internal static string postCCRefund(modelSettings1 mS, modelPOS mPOS,string cc4digit, string contactPreference,string contactInfo, string note, string recieptNumber)
+        internal static string postCCRefund(modelSettings1 mS, modelPOSTrans mPOS,string cc4digit, string contactPreference,string contactInfo, string note, string recieptNumber)
         {
             string result = "";
             try
@@ -114,10 +217,10 @@ namespace APP_CircPrintServer.Functions
                 }
                 return "DOne";
             }
-            catch (Exception e1) { FileControl.fileWriteLog(e1.ToString(), mS); return e1.ToString(); }
+            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Post refund problem " + e1.ToString(), mS); return e1.ToString(); }
            
         }
-        internal static string emailRefund(modelSettings1 mS, modelPOS mPOS,string body)
+        internal static string emailRefund(modelSettings1 mS, modelPOSTrans mPOS,string body)
         {
             try {
                 using (WebClient client = new WebClient { UseDefaultCredentials = true })
@@ -142,7 +245,8 @@ namespace APP_CircPrintServer.Functions
                     }
                 }
             }
-            catch (Exception e1) { FileControl.fileWriteLog(e1.ToString(), mS); return "Error"; }
+            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Send Refund Email problem " + e1.ToString(), mS); return "Error"; }
         }
+        
     }
 }

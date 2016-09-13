@@ -355,7 +355,7 @@ namespace OLPL_APP_CircPrinter_Admin
                 btnFont.Visible = true;
                 lblData.Visible = true;
                 tbxData.Visible = true;
-                lblData.Text = "Data: Text before first name";
+                lblData.Text = "Data: Limit number of letters";
                 lblAlignment.Visible = true;
                 cbAlignment.Visible = true;
                 lblSpaceTop.Visible = true;

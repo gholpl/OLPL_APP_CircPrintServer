@@ -237,8 +237,7 @@ namespace APP_CircPrintServer
                                     }
                                 }
                             }
-                            if (dataStr.Contains("Sale")) { posTrans.transType = "Sale"; }
-                            else if (dataStr.Contains("Refund")) { posTrans.transType = "Refund"; }
+                            if (dataStr.Contains("Refund")) { posTrans.transType = "Refund"; }
                             else if (dataStr.Contains("Void")) { posTrans.transType = "Void"; }
                             else { posTrans.transType = "Sale"; }
                             posTrans.transID = controlPOS.getTransID(mS, posTrans);
@@ -329,8 +328,7 @@ namespace APP_CircPrintServer
                                 else
                                 {
                                     #region cashmanagemnttrans
-                                    if (dataStr.Contains("Sale"))
-                                    {
+                                    
                                         DateTime dt1 = new DateTime();
                                         //modelPOS mPOS = new modelPOS();
                                         #region CashManagementTransSale
@@ -340,7 +338,8 @@ namespace APP_CircPrintServer
                                         List<string> itemSet = new List<string>();
                                         List<string> itemSet2 = new List<string>();
                                         List<string> paymentSet = new List<string>();
-                                        foreach (string str11 in dataStr.Split(Environment.NewLine.ToCharArray()))
+                                        
+                                    foreach (string str11 in dataStr.Split(Environment.NewLine.ToCharArray()))
                                         {
                                             if (!string.IsNullOrEmpty(str11))
                                             {
@@ -366,9 +365,12 @@ namespace APP_CircPrintServer
                                                     }
                                                 }
                                                 if (str11.Contains("Library name:")) { libName = true; }
-                                                if (str11.Contains("Change:")) { posTempLine.paymentChange = Decimal.Parse(str11.Replace("Change: $", "")); }
-
+                                            if (str11.Contains("Change:"))
+                                            {
+                                                if (str11.Contains('-')) { posTempLine.paymentChange = Decimal.Parse(str11.Replace("Change: -$", "")); }
+                                                else { posTempLine.paymentChange = Decimal.Parse(str11.Replace("Change: $", "")); }
                                             }
+                                        }
                                         }
                                         List<modelPOSTransLine> posPayments = new List<modelPOSTransLine>();
                                         List<modelPOSTransLine> posLines = new List<modelPOSTransLine>();
@@ -462,8 +464,23 @@ namespace APP_CircPrintServer
                                                     posPayments[0].paymentAmount = posPayments[0].paymentAmount - tl2.paymentAmount;
                                                     posPayments[0].paymentTotal = posPayments[0].paymentTotal - tl2.paymentAmount;
                                                 }
+                                            if (posTrans.transType.ToUpper().Contains("REFUND"))
+                                            {
+                                                tl2.paymentAmount = tl2.paymentAmount * -1;
+                                                tl2.paymentTotal = tl2.paymentTotal * -1;
+                                                tl2.itemPrice = tl2.itemPrice * -1;
+                                            }
+                                                if (posTrans.transType.ToUpper().Contains("REFUND") && tl2.paymentType.Contains("OLSBCC2"))
+                                                {
                                                 
-                                                controlPOS.postTransLine(mS, tl2);
+
+                                                    CCRefund cref = new CCRefund();
+                                                    cref.mPOS = posTrans;
+                                                    cref.posTransLine = tl2;
+                                                    cref.mS = mS;
+                                                    cref.ShowDialog();
+                                                }
+                                            controlPOS.postTransLine(mS, tl2);
                                                 count2++;
                                             }
                                         }
@@ -496,21 +513,20 @@ namespace APP_CircPrintServer
                                                 frm.ShowDialog();
                                             }
                                         }
-                                        //recieptData = recieptData + "Bill Reason: " + mPOS.reason + Environment.NewLine;
-                                        //if (!string.IsNullOrEmpty(mPOS.title)) { recieptData = recieptData + "Title: " + mPOS.title + Environment.NewLine; }
-                                        //recieptData = recieptData + "Item Quantity: " + mPOS.quantity + Environment.NewLine
-                                        //    + "Item Price: " + mPOS.amtCol.ToString() + Environment.NewLine + Environment.NewLine;
-                                        //recieptData = recieptData + Environment.NewLine;
-                                        //recieptData = recieptData + "Payment Type: " + mPOS1.type + Environment.NewLine;
-                                        //recieptData = recieptData + "Amount Paid: " + mPOS1.amtCol + Environment.NewLine;
-                                        //recieptData = recieptData + "Change: " + mPOS1.change + Environment.NewLine + Environment.NewLine;
-                                        controlPOS.closeTrans(mS, posTrans);
+                                   
+                                    //recieptData = recieptData + "Bill Reason: " + mPOS.reason + Environment.NewLine;
+                                    //if (!string.IsNullOrEmpty(mPOS.title)) { recieptData = recieptData + "Title: " + mPOS.title + Environment.NewLine; }
+                                    //recieptData = recieptData + "Item Quantity: " + mPOS.quantity + Environment.NewLine
+                                    //    + "Item Price: " + mPOS.amtCol.ToString() + Environment.NewLine + Environment.NewLine;
+                                    //recieptData = recieptData + Environment.NewLine;
+                                    //recieptData = recieptData + "Payment Type: " + mPOS1.type + Environment.NewLine;
+                                    //recieptData = recieptData + "Amount Paid: " + mPOS1.amtCol + Environment.NewLine;
+                                    //recieptData = recieptData + "Change: " + mPOS1.change + Environment.NewLine + Environment.NewLine;
+                                    controlPOS.closeTrans(mS, posTrans);
                                         dataStr = recieptData;
                                         #endregion
-                                    }
-                                    else if (dataStr.Contains("Refund"))
-                                    {
-                                        DateTime dt1 = new DateTime();
+                                    
+                                        
                                         #region CashManagementTransRefund
                                         //bool libName = false;
                                         //bool paymentLines = false;
@@ -616,27 +632,25 @@ namespace APP_CircPrintServer
                                         //controlPOS.closeTrans(mS, mPOS);
                                         //dataStr = recieptData;
                                         #endregion
-                                    }
-                                    else
-                                    {
+                                    
                                         #region CashManagementTransOther
 
 
 
                                         #endregion
-                                    }
+                                    
 
                                     #endregion
                                 }
                             }
                             catch(Exception e1) {
-                                FileControl.fileWriteLog(e1.ToString(), mS);
-                                FileControl.fileWriteLog(dataStr,mS);
+                                FileControl.fileWriteLog(e1.ToString() + " - " + dataStr, mS);
                                 var st = new StackTrace(e1, true);
                                 var frame = st.GetFrame(0);
                                 var line = frame.GetFileLineNumber();
-                                FileControl.fileWriteLog("Exception line number: " + line, mS);
+
                             }
+                            controlPOS.runBackupFiles(mS);
                         }
                         bool printRec = true;
                         if (mS.switchAskTransit == "1")
@@ -706,7 +720,7 @@ namespace APP_CircPrintServer
                 {
                     List<string> sList = new List<string>();
 
-                    FileControl.fileWriteLog(arg, mS);
+                    //FileControl.fileWriteLog(arg, mS);
                     string screenCapture = File.ReadAllText(arg);
                     if (screenCapture.Contains("Check In : Issue Received"))
                     {

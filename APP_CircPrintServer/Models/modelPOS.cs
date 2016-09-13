@@ -31,17 +31,18 @@ namespace APP_CircPrintServer.Models
     }
     class modelPOSTrans
     {
-        public int transID { get; set; }
+        public double transID { get; set; }
         public string operatorID { get; set; }
         public string userID { get; set; }
         public string compName { get; set; }
         public string stationType { get; set; }
         public string strData { get; set; }
         public string transType { get; set; }
+        public string transDate { get; set; }
     }
     class modelPOSTransLine
     {
-        public int idTrans { get; set; }
+        public double idTrans { get; set; }
         public int idLine { get; set; }
         public string itemID { get; set; }
         public string itemTitle { get; set; }

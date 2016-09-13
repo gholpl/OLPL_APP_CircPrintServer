@@ -513,5 +513,10 @@ namespace OLPL_APP_CircPrinter_Admin
         {
 
         }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

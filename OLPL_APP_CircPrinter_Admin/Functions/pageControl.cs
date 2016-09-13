@@ -288,6 +288,18 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
 
                             }
                         }
+                        int size = 0;
+                        if(int.TryParse(l1.data,out size))
+                        {
+                            string newText = "";
+                            int count = 0;
+                            foreach(char c in text)
+                            {
+                                if (count < size) { newText = newText + c; }
+                                count++;
+                            }
+                            text = newText;
+                        }
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1221,6 +1233,11 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             if (l1.data.Contains("<exe>"))
             {
                 data = data + l1.data.Replace("<exe>", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
+                none = false;
+            }
+            if (l1.data.Contains("<ProgramData>"))
+            {
+                data = data + l1.data.Replace("<ProgramData>", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\");
                 none = false;
             }
             if (l1.data.Contains("<longdate>"))

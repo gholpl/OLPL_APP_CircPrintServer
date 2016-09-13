@@ -8,6 +8,7 @@ using Clc;
 using Clc.Sip;
 using APP_CircPrintServer.Models;
 using APP_CircPrintServer.SIP2;
+using System.Diagnostics;
 
 namespace APP_CircPrintServer.Functions
 {
@@ -15,7 +16,7 @@ namespace APP_CircPrintServer.Functions
     {
         private sip2 sipclient;
 
-        public static string getPatronInfo(modelSettings1 mS, modelPOS mPOS)
+        public static string getPatronInfo(modelSettings1 mS, modelPOSTrans mPOS)
         {
             string name = "";
             string address = "";
@@ -98,6 +99,7 @@ namespace APP_CircPrintServer.Functions
         }
         internal string checkoutItem(string barcode, string item, modelSettings1 mS)
         {
+            //Debugger.Launch();
             try
             {
                 sipclient = new sip2(mS.SIPServerIP, int.Parse(mS.SIPServerPort), "", "");

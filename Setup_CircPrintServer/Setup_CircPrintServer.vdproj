@@ -69,12 +69,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_201AAE246E3A4C63BF0662891AD8C06E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_27F747FC27C1482D9174069AD9FDCA0E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,12 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_2B93E7E1A3A043E8A293582F312B1064"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2EEBDD6372894C5CAAA417EC6CAF16C2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -117,20 +105,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5B8C9C8B16F64487B4B60D53CDB6DB35"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5DF632192426E96F9D3B9F352BDE2BC7"
         "OwnerKey" = "8:_2B03BA8701EE485584147665C36145E6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5EECCCE4ACD3484090B8959FD533B045"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -177,12 +153,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8F5BE4BB375F44D4A38D7DF5E63CD214"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A15F37930D354C2AAF18523EFE8CFB1C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -202,12 +172,6 @@
         "Entry"
         {
         "MsmKey" = "8:_A879BC222015484C8CE1922969AC98C8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B21F50DACECC4BD8B0573AAA65997F78"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -262,18 +226,6 @@
         "Entry"
         {
         "MsmKey" = "8:_CC0EB7242E9E4907B2AB18D11FDF7922"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D2EE398D9468406AAD0A946F04E45D0B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D982558BCADF447EA4A9DCD082A9FE8D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -568,11 +520,6 @@
             "AssemblyAsmDisplayName" = "8:BarcodeLib, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_153DE9A917C7D0F13598FF88F576A682"
-                    {
-                    "Name" = "8:BarcodeLib.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:BarcodeLib.dll"
             "TargetName" = "8:"
@@ -632,26 +579,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_201AAE246E3A4C63BF0662891AD8C06E"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLPLFinancial.template"
-            "TargetName" = "8:OLPLFinancial.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_27F747FC27C1482D9174069AD9FDCA0E"
             {
             "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\OLPL_APP_CircPrinter_Admin\\bin\\Debug\\redmon\\src.zip"
@@ -692,26 +619,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EEBDD6372894C5CAAA417EC6CAF16C2"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLSUserRecord.template"
-            "TargetName" = "8:OLSUserRecord.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_32F0EC38086A4BE699B6BA7D3E7A3DED"
             {
             "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\OLPL_APP_CircPrinter_Admin\\bin\\Debug\\redmon\\unredmon64.exe"
@@ -732,38 +639,13 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5B8C9C8B16F64487B4B60D53CDB6DB35"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLPLHoldsPage1.template"
-            "TargetName" = "8:OLPLHoldsPage1.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5DF632192426E96F9D3B9F352BDE2BC7"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:OLPL_APP_CircPrinter_Admin, Version=1.0.4.2, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:OLPL_APP_CircPrinter_Admin, Version=1.0.4.3, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5DF632192426E96F9D3B9F352BDE2BC7"
-                    {
-                    "Name" = "8:OLPL_APP_CircPrinter_Admin.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:OLPL_APP_CircPrinter_Admin.exe"
             "TargetName" = "8:"
@@ -783,26 +665,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5EECCCE4ACD3484090B8959FD533B045"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLPLCirc.template"
-            "TargetName" = "8:OLPLCirc.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5FEFAE6C017CAC4455BB11F11CEF5441"
             {
             "AssemblyRegister" = "3:1"
@@ -810,11 +672,6 @@
             "AssemblyAsmDisplayName" = "8:DLL_CircPrintServer, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5FEFAE6C017CAC4455BB11F11CEF5441"
-                    {
-                    "Name" = "8:DLL_CircPrintServer.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DLL_CircPrintServer.dll"
             "TargetName" = "8:"
@@ -914,26 +771,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F5BE4BB375F44D4A38D7DF5E63CD214"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLPLHoldsPage2.template"
-            "TargetName" = "8:OLPLHoldsPage2.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A29EF08BA48A4BA3AC1699A8B6429C3D"
             {
             "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\BarcodeLib.pdb"
@@ -980,26 +817,6 @@
             "TargetName" = "8:LICENCE"
             "Tag" = "8:"
             "Folder" = "8:_D9A74E3F47D4423294230CED0860D252"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B21F50DACECC4BD8B0573AAA65997F78"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLSSerialRoute.template"
-            "TargetName" = "8:OLSSerialRoute.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1061,11 +878,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_C47EADFB8214E818298DF8FC81BE7136"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -1145,46 +957,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D2EE398D9468406AAD0A946F04E45D0B"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\Logo.bmp"
-            "TargetName" = "8:Logo.bmp"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D982558BCADF447EA4A9DCD082A9FE8D"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\OLPLInTransit.template"
-            "TargetName" = "8:OLPLInTransit.template"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DAEF78D71130F3441189A45F7B7F4D18"
             {
             "AssemblyRegister" = "3:1"
@@ -1192,11 +964,6 @@
             "AssemblyAsmDisplayName" = "8:APP_CircPrintServer_SetDeps, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_DAEF78D71130F3441189A45F7B7F4D18"
-                    {
-                    "Name" = "8:APP_CircPrintServer_SetDeps.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:APP_CircPrintServer_SetDeps.exe"
             "TargetName" = "8:"
@@ -1303,15 +1070,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CircPrintServer"
-        "ProductCode" = "8:{4CCBB18B-A040-457B-B17B-62FFDF015BF0}"
-        "PackageCode" = "8:{D10A82CB-99CE-4877-B63C-8EFB2EB6F8A2}"
+        "ProductCode" = "8:{EED59444-21F9-4105-842A-C84149FE2C3C}"
+        "PackageCode" = "8:{059A8C4C-F043-448A-84BE-E0C0147C7F68}"
         "UpgradeCode" = "8:{85BA3601-F8DC-457B-82EB-2FD33D56D692}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.9"
+        "ProductVersion" = "8:1.2.5"
         "Manufacturer" = "8:Oak Lawn Public Library"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

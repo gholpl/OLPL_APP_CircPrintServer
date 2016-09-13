@@ -55,5 +55,11 @@ namespace APP_CircPrintServer.Models
         internal string SIPServerPort { get; set; }
         internal string SIPUserName { get; set; }
         internal string SIPUserPassword { get; set; }
+        internal bool POSDebugLogging { get; set; }
+        internal string POSDataFolder { get; set; }
+        internal string ErrorEMailServer { get; set; }
+        internal bool ErrorEMailEnable { get; set; }
+        internal string ErrorEMailAddress { get; set; }
+        internal bool backupFileRunControl { get; set; }
     }
 }

@@ -160,6 +160,9 @@
             this.btnAddElement = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPOS = new System.Windows.Forms.TabPage();
+            this.cbPOSDebugLogging = new System.Windows.Forms.CheckBox();
+            this.tbPOSDataFolder = new System.Windows.Forms.TextBox();
+            this.label52 = new System.Windows.Forms.Label();
             this.tbPOSServerEmailRefund = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.tbPOSServerEmailAPI = new System.Windows.Forms.TextBox();
@@ -183,6 +186,12 @@
             this.stats_PortRedirCreate = new System.Windows.Forms.Timer(this.components);
             this.stats_PrinterCreated = new System.Windows.Forms.Timer(this.components);
             this.stat_SirsiSettings = new System.Windows.Forms.Timer(this.components);
+            this.tbErrorEmalAddress = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.tbErrorEmailServer = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.cbErrorEMailEnable = new System.Windows.Forms.CheckBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -212,6 +221,7 @@
             this.tabPOS.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -241,6 +251,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Overview";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // groupBox7
             // 
@@ -359,6 +370,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox9);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -717,7 +729,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(486, 20);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(563, 177);
+            this.groupBox3.Size = new System.Drawing.Size(563, 200);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Files";
@@ -1561,6 +1573,9 @@
             // 
             // tabPOS
             // 
+            this.tabPOS.Controls.Add(this.cbPOSDebugLogging);
+            this.tabPOS.Controls.Add(this.tbPOSDataFolder);
+            this.tabPOS.Controls.Add(this.label52);
             this.tabPOS.Controls.Add(this.tbPOSServerEmailRefund);
             this.tabPOS.Controls.Add(this.label41);
             this.tabPOS.Controls.Add(this.tbPOSServerEmailAPI);
@@ -1577,10 +1592,39 @@
             this.tabPOS.Text = "Point of Sale";
             this.tabPOS.UseVisualStyleBackColor = true;
             // 
+            // cbPOSDebugLogging
+            // 
+            this.cbPOSDebugLogging.AutoSize = true;
+            this.cbPOSDebugLogging.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPOSDebugLogging.Location = new System.Drawing.Point(38, 121);
+            this.cbPOSDebugLogging.Name = "cbPOSDebugLogging";
+            this.cbPOSDebugLogging.Size = new System.Drawing.Size(226, 21);
+            this.cbPOSDebugLogging.TabIndex = 10;
+            this.cbPOSDebugLogging.Text = "Enable Debug Logging for POS";
+            this.cbPOSDebugLogging.UseVisualStyleBackColor = true;
+            // 
+            // tbPOSDataFolder
+            // 
+            this.tbPOSDataFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tbPOSDataFolder.Location = new System.Drawing.Point(207, 92);
+            this.tbPOSDataFolder.Name = "tbPOSDataFolder";
+            this.tbPOSDataFolder.Size = new System.Drawing.Size(543, 23);
+            this.tbPOSDataFolder.TabIndex = 9;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label52.Location = new System.Drawing.Point(42, 95);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(166, 17);
+            this.label52.TabIndex = 8;
+            this.label52.Text = "Point of Sale Data Folder";
+            // 
             // tbPOSServerEmailRefund
             // 
             this.tbPOSServerEmailRefund.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbPOSServerEmailRefund.Location = new System.Drawing.Point(211, 145);
+            this.tbPOSServerEmailRefund.Location = new System.Drawing.Point(207, 256);
             this.tbPOSServerEmailRefund.Name = "tbPOSServerEmailRefund";
             this.tbPOSServerEmailRefund.Size = new System.Drawing.Size(543, 23);
             this.tbPOSServerEmailRefund.TabIndex = 7;
@@ -1589,7 +1633,7 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label41.Location = new System.Drawing.Point(29, 151);
+            this.label41.Location = new System.Drawing.Point(25, 262);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(176, 17);
             this.label41.TabIndex = 6;
@@ -1598,7 +1642,7 @@
             // tbPOSServerEmailAPI
             // 
             this.tbPOSServerEmailAPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbPOSServerEmailAPI.Location = new System.Drawing.Point(211, 116);
+            this.tbPOSServerEmailAPI.Location = new System.Drawing.Point(207, 227);
             this.tbPOSServerEmailAPI.Name = "tbPOSServerEmailAPI";
             this.tbPOSServerEmailAPI.Size = new System.Drawing.Size(543, 23);
             this.tbPOSServerEmailAPI.TabIndex = 5;
@@ -1607,7 +1651,7 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label40.Location = new System.Drawing.Point(92, 122);
+            this.label40.Location = new System.Drawing.Point(88, 233);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(113, 17);
             this.label40.TabIndex = 4;
@@ -1617,7 +1661,7 @@
             // 
             this.cbPOSEmailEnable.AutoSize = true;
             this.cbPOSEmailEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPOSEmailEnable.Location = new System.Drawing.Point(42, 88);
+            this.cbPOSEmailEnable.Location = new System.Drawing.Point(38, 199);
             this.cbPOSEmailEnable.Name = "cbPOSEmailEnable";
             this.cbPOSEmailEnable.Size = new System.Drawing.Size(163, 21);
             this.cbPOSEmailEnable.TabIndex = 3;
@@ -1627,7 +1671,7 @@
             // tbPOSServerAPI
             // 
             this.tbPOSServerAPI.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbPOSServerAPI.Location = new System.Drawing.Point(211, 51);
+            this.tbPOSServerAPI.Location = new System.Drawing.Point(207, 63);
             this.tbPOSServerAPI.Name = "tbPOSServerAPI";
             this.tbPOSServerAPI.Size = new System.Drawing.Size(543, 23);
             this.tbPOSServerAPI.TabIndex = 2;
@@ -1636,7 +1680,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label39.Location = new System.Drawing.Point(46, 54);
+            this.label39.Location = new System.Drawing.Point(42, 66);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(159, 17);
             this.label39.TabIndex = 1;
@@ -1646,7 +1690,7 @@
             // 
             this.cbPOSEnable.AutoSize = true;
             this.cbPOSEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPOSEnable.Location = new System.Drawing.Point(42, 30);
+            this.cbPOSEnable.Location = new System.Drawing.Point(38, 42);
             this.cbPOSEnable.Name = "cbPOSEnable";
             this.cbPOSEnable.Size = new System.Drawing.Size(221, 21);
             this.cbPOSEnable.TabIndex = 0;
@@ -1780,6 +1824,68 @@
             this.stats_PrinterCreated.Interval = 1000;
             this.stats_PrinterCreated.Tick += new System.EventHandler(this.stats_PrinterCreated_Tick);
             // 
+            // tbErrorEmalAddress
+            // 
+            this.tbErrorEmalAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tbErrorEmalAddress.Location = new System.Drawing.Point(172, 88);
+            this.tbErrorEmalAddress.Name = "tbErrorEmalAddress";
+            this.tbErrorEmalAddress.Size = new System.Drawing.Size(384, 23);
+            this.tbErrorEmalAddress.TabIndex = 14;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label57.Location = new System.Drawing.Point(14, 91);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(162, 17);
+            this.label57.TabIndex = 13;
+            this.label57.Text = "Email Address for Errors";
+            // 
+            // tbErrorEmailServer
+            // 
+            this.tbErrorEmailServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tbErrorEmailServer.Location = new System.Drawing.Point(172, 59);
+            this.tbErrorEmailServer.Name = "tbErrorEmailServer";
+            this.tbErrorEmailServer.Size = new System.Drawing.Size(384, 23);
+            this.tbErrorEmailServer.TabIndex = 12;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label58.Location = new System.Drawing.Point(52, 62);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(113, 17);
+            this.label58.TabIndex = 11;
+            this.label58.Text = "Email Server API";
+            // 
+            // cbErrorEMailEnable
+            // 
+            this.cbErrorEMailEnable.AutoSize = true;
+            this.cbErrorEMailEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbErrorEMailEnable.Location = new System.Drawing.Point(41, 32);
+            this.cbErrorEMailEnable.Name = "cbErrorEMailEnable";
+            this.cbErrorEMailEnable.Size = new System.Drawing.Size(144, 21);
+            this.cbErrorEMailEnable.TabIndex = 10;
+            this.cbErrorEMailEnable.Text = "Enable Error email";
+            this.cbErrorEMailEnable.UseVisualStyleBackColor = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.tbErrorEmalAddress);
+            this.groupBox9.Controls.Add(this.tbErrorEmailServer);
+            this.groupBox9.Controls.Add(this.label57);
+            this.groupBox9.Controls.Add(this.cbErrorEMailEnable);
+            this.groupBox9.Controls.Add(this.label58);
+            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox9.Location = new System.Drawing.Point(486, 237);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(563, 129);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Error Handling Email";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1834,6 +1940,8 @@
             this.tabPage7.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1994,6 +2102,15 @@
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox tbPOSDataFolder;
+        internal System.Windows.Forms.Label label52;
+        internal System.Windows.Forms.CheckBox cbPOSDebugLogging;
+        private System.Windows.Forms.GroupBox groupBox9;
+        internal System.Windows.Forms.TextBox tbErrorEmalAddress;
+        internal System.Windows.Forms.TextBox tbErrorEmailServer;
+        internal System.Windows.Forms.Label label57;
+        internal System.Windows.Forms.CheckBox cbErrorEMailEnable;
+        internal System.Windows.Forms.Label label58;
     }
 }
 

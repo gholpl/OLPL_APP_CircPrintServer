@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using System.Xml;
 using DLL_CircPrintServer.Classes;
 using DLL_CircPrintServer.Models;
+using System.Net;
+using System.Collections.Specialized;
+using System.Threading;
 
 namespace APP_CircPrintServer.Functions
 {
@@ -20,17 +23,11 @@ namespace APP_CircPrintServer.Functions
         {
             modelSettings1 mS = new modelSettings1();
             mS.customSettings = new List<modelSettingCustom>();
-            //MessageBox.Show(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase));
-            string pathEXE = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
-            if (!pathEXE.Contains(@":")) { pathEXE = @"\\" + pathEXE; }
-            // MessageBox.Show(pathEXE);
-            
-            mS.pathEXE = pathEXE;
             mS.machineName = Environment.MachineName;
             try
             {
-                List<modelSettings> set1 = ControlSettings.readSettingFile(mS.pathEXE);
-               // MessageBox.Show(mS.pathEXE);
+                List<modelSettings> set1 = ControlSettings.readSettingFile(fixVars("<ProgramData>\\CircPrintSoftware"));
+
                 foreach (modelSettings s1 in set1)
                 {
                     
@@ -169,7 +166,8 @@ namespace APP_CircPrintServer.Functions
                             if (s1.name.Contains("POSEmailEnable")) { mS.POSEmailEnable = bool.Parse(s1.value); }
                             if (s1.name.Contains("POSServerEmailAPI")) { mS.POSServerEmailAPI = s1.value; }
                             if (s1.name.Contains("POSServerEmailRefund")) { mS.POSServerEmailRefund = s1.value; }
-
+                            if (s1.name.Contains("POSDataFolder")) { mS.POSDataFolder = s1.value; }
+                            if (s1.name.Contains("POSDebugLogging")) { mS.POSDebugLogging = bool.Parse(s1.value); }
                         }
                         else if (s1.name.Contains("SIP"))
                         {
@@ -179,7 +177,13 @@ namespace APP_CircPrintServer.Functions
                             if (s1.name.Contains("SIPUserPassword")) { mS.SIPUserPassword = s1.value; }
 
                         }
-                        else
+                    else if (s1.name.Contains("Error"))
+                    {
+                        if (s1.name.Contains("ErrorEMailEnable")) { mS.ErrorEMailEnable = bool.Parse(s1.value); }
+                        if (s1.name.Contains("ErrorEMailServer")) { mS.ErrorEMailServer = s1.value; }
+                        if (s1.name.Contains("ErrorEMailAddress")) { mS.ErrorEMailAddress = s1.value; }
+                    }
+                    else
                         {
                             modelSettingCustom sc1 = new modelSettingCustom();
                             sc1.name = s1.name;
@@ -230,8 +234,29 @@ namespace APP_CircPrintServer.Functions
             {
                 log = File.AppendText(mS.fileLog);
             }
-            log.WriteLine(str);
+            if (mS.switchAdminMode == "0") { emailError(mS, str); }
+            log.WriteLine(DateTime.Now + " -- " + str);
             log.Close();
+        }
+        internal static bool writeDataLine(modelSettings1 mS, string fileName, string line)
+        {
+            try
+            {
+                StreamWriter dataFile;
+               string fileData = FileControl.fixVars(mS.POSDataFolder + fileName);
+                if (!File.Exists(fileData))
+                {
+                    dataFile = File.CreateText(fileData);
+                }
+                else
+                {
+                    dataFile = File.AppendText(fileData);
+                }
+                dataFile.WriteLine(line);
+                dataFile.Close();
+                return true;
+            }
+            catch (Exception) { return false; }
         }
         static public void fileWriteTempData(string str,modelSettings1 mS)
         {
@@ -261,13 +286,13 @@ namespace APP_CircPrintServer.Functions
             }
 
         }
-        static public List<modelElement> readTemplateFile(string tempLocation,modelSettings1 mS)
+        static public List<modelElement> readTemplateFile(string tempname,modelSettings1 mS)
         {
             try
             {
                 List<modelElement> lEl = new List<modelElement>();
                 XmlDocument doc = new XmlDocument();
-                doc.Load(mS.pathEXE + "\\" + tempLocation + ".template");
+                doc.Load(fixVars(mS.tempLocation + "\\" + tempname + ".template"));
                 XmlElement Main;
                 Main = doc.DocumentElement;
                 XmlNodeList Element = Main.GetElementsByTagName("Element");
@@ -360,7 +385,7 @@ namespace APP_CircPrintServer.Functions
             }
             catch (Exception e) { return e.Message; }
         }
-        static string fixVars(string input)
+        public static string fixVars(string input)
         {
             //MessageBox.Show(input);
             if (string.IsNullOrEmpty(input)){ input = ""; }
@@ -373,6 +398,11 @@ namespace APP_CircPrintServer.Functions
             if (input.Contains("<exe>"))
             {
                 data = input.Replace("<exe>", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
+                none = false;
+            }
+            if (input.Contains("<ProgramData>"))
+            {
+                data = input.Replace("<ProgramData>", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\");
                 none = false;
             }
             if (input.Contains("<longdate>"))
@@ -446,6 +476,34 @@ namespace APP_CircPrintServer.Functions
                 }
             }
             return result;
+        }
+        internal static string emailError(modelSettings1 mS, string body)
+        {
+            try
+            {
+                using (WebClient client = new WebClient { UseDefaultCredentials = true })
+                {
+                    string result = "";
+                    byte[] response = client.UploadValues(mS.ErrorEMailServer, new NameValueCollection()
+                    {
+                         { "from","POSSystem@olpl.org" },
+                         { "to", mS.ErrorEMailAddress },
+                         { "subject", "POS System Error Report" },
+                         { "body",body },
+                    });
+                    result = System.Text.Encoding.UTF8.GetString(response);
+
+                    if (result.Contains("OK"))
+                    {
+                        return "OK";
+                    }
+                    else
+                    {
+                        return "Error";
+                    }
+                }
+            }
+            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Send Error Email problem " + e1.ToString(), mS); return "Error"; }
         }
     }
 }
