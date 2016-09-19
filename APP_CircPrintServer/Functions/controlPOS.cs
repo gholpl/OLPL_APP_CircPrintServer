@@ -8,15 +8,18 @@ using System.Collections.Specialized;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using DLL_CircPrintServer;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 
 namespace APP_CircPrintServer.Functions
 {
     class controlPOS
     {
         static string error = "";
-        internal static void runBackupFiles(modelSettings1 mS)
+        internal static void runBackupFiles(modelSettings mS)
         {
-                string fileName = FileControl.fixVars(mS.POSDataFolder + "dataPOSTrans.data");
+                string fileName = controlFunctions.fixVars(mS.POSDataFolder + "dataPOSTrans.data");
                 if (File.Exists(fileName))
                 {
                     //Debugger.Launch();
@@ -56,7 +59,7 @@ namespace APP_CircPrintServer.Functions
                 }
                
         }
-        internal static double getTransID(modelSettings1 mS, modelPOSTrans mPOS)
+        internal static double getTransID(modelSettings mS, modelPOSTrans mPOS)
         {
             error = "";
             string strTransLine = DateTime.Now + "|" + mPOS.operatorID + "|" + mPOS.userID + "|" + mS.machineName + "|" + mPOS.stationType + "|" + mPOS.transType + "|" + mPOS.strData;
@@ -101,7 +104,7 @@ namespace APP_CircPrintServer.Functions
                             FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + " - " + mPOS.compName + " Duplicate/Error API Trans=" + strTransLine + "|" + result);
                             FileControl.writeDataLine(mS, "dataPOSTrans.data", strTransLine);
                         }
-                        FileControl.fileWriteLog(DateTime.Now + " - " + mPOS.compName + " Error Creating Trans=" + strTransLine + " " + error, mS);
+                        controlFunctions.fileWriteLog(DateTime.Now + " - " + mPOS.compName + " Error Creating Trans=" + strTransLine + " " + error, mS);
                     }
                     ret = double.Parse(result);
                 }
@@ -109,7 +112,7 @@ namespace APP_CircPrintServer.Functions
             catch (Exception e1)
             {
                 FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-" + Environment.MachineName + " - " + mPOS.compName + " Error Coding Trans=" + strTransLine + "|" + result);
-                FileControl.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " - " + mPOS.compName + " Get transID problem " + e1.ToString() + " -- " + strTransLine, mS);
+                controlFunctions.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " - " + mPOS.compName + " Get transID problem " + e1.ToString() + " -- " + strTransLine, mS);
                 if (mPOS.transID < 1)
                 {
                     result = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -122,7 +125,7 @@ namespace APP_CircPrintServer.Functions
            
             return ret;
         }
-        internal static void postTransLine(modelSettings1 mS, modelPOSTransLine mPOS)
+        internal static void postTransLine(modelSettings mS, modelPOSTransLine mPOS)
         {
             string result = "";
             string strTransLine = "";
@@ -158,7 +161,7 @@ namespace APP_CircPrintServer.Functions
                     result = result.Replace("\\", "");
                     if (result != "\"0\"")
                     {
-                        FileControl.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " Error Creating TransLine=" + strTransLine + " -- " + result, mS);
+                        controlFunctions.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " Error Creating TransLine=" + strTransLine + " -- " + result, mS);
                         FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-" + Environment.MachineName + " Duplicate/Error API TransLine=" + strTransLine + "|" + result);
                         FileControl.writeDataLine(mS, "dataPOSTransLine.data", strTransLine);
                     }
@@ -168,11 +171,11 @@ namespace APP_CircPrintServer.Functions
             catch (Exception e1)
             {
                 FileControl.writeDataLine(mS, "POSDebug.log", DateTime.Now + "-"+Environment.MachineName + " Error Coding TransLine=" + strTransLine + "|" + e1.ToString());
-                FileControl.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " Create transline problem " + e1.ToString() + " -- " + strTransLine, mS);
+                controlFunctions.fileWriteLog(DateTime.Now + "-" + Environment.MachineName + " Create transline problem " + e1.ToString() + " -- " + strTransLine, mS);
                 FileControl.writeDataLine(mS, "dataPOSTransLine.data", strTransLine);
             }
         }
-        internal static void closeTrans(modelSettings1 mS, modelPOSTrans mPOS)
+        internal static void closeTrans(modelSettings mS, modelPOSTrans mPOS)
         {
             string result = "";
             try
@@ -189,10 +192,10 @@ namespace APP_CircPrintServer.Functions
                     result = System.Text.Encoding.UTF8.GetString(response);
                 }
             }
-            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Close trans problem " + e1.ToString(), mS); }
+            catch (Exception e1) { controlFunctions.fileWriteLog(DateTime.Now + "Close trans problem " + e1.ToString(), mS); }
             //return int.Parse(result);
         }
-        internal static string postCCRefund(modelSettings1 mS, modelPOSTrans mPOS,string cc4digit, string contactPreference,string contactInfo, string note, string recieptNumber)
+        internal static string postCCRefund(modelSettings mS, modelPOSTrans mPOS,string cc4digit, string contactPreference,string contactInfo, string note, string recieptNumber)
         {
             string result = "";
             try
@@ -217,10 +220,10 @@ namespace APP_CircPrintServer.Functions
                 }
                 return "DOne";
             }
-            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Post refund problem " + e1.ToString(), mS); return e1.ToString(); }
+            catch (Exception e1) { controlFunctions.fileWriteLog(DateTime.Now + "Post refund problem " + e1.ToString(), mS); return e1.ToString(); }
            
         }
-        internal static string emailRefund(modelSettings1 mS, modelPOSTrans mPOS,string body)
+        internal static string emailRefund(modelSettings mS, modelPOSTrans mPOS,string body)
         {
             try {
                 using (WebClient client = new WebClient { UseDefaultCredentials = true })
@@ -245,7 +248,7 @@ namespace APP_CircPrintServer.Functions
                     }
                 }
             }
-            catch (Exception e1) { FileControl.fileWriteLog(DateTime.Now + "Send Refund Email problem " + e1.ToString(), mS); return "Error"; }
+            catch (Exception e1) { controlFunctions.fileWriteLog(DateTime.Now + "Send Refund Email problem " + e1.ToString(), mS); return "Error"; }
         }
         
     }

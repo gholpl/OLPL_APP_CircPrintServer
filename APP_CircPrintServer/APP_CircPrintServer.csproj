@@ -66,6 +66,12 @@
     <Compile Include="Forms\CCRefund.Designer.cs">
       <DependentUpon>CCRefund.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\changePrinter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\changePrinter.Designer.cs">
+      <DependentUpon>changePrinter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\formPOSPayment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,10 +93,7 @@
     <Compile Include="Functions\printControl.cs" />
     <Compile Include="Functions\statsControl.cs" />
     <Compile Include="Models\modelCheckout.cs" />
-    <Compile Include="Models\modelElement.cs" />
     <Compile Include="Models\modelPOS.cs" />
-    <Compile Include="Models\modelSettingCustom.cs" />
-    <Compile Include="Models\modelSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SIP2\Extensions.cs" />
@@ -104,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CCRefund.resx">
       <DependentUpon>CCRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\changePrinter.resx">
+      <DependentUpon>changePrinter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formPOSPayment.resx">
       <DependentUpon>formPOSPayment.cs</DependentUpon>

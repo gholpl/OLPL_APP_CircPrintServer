@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DLL_CircPrintServer;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 
 namespace APP_CircPrintServer.Functions
 {
     class listControl
     {
-        static internal List<modelCheckout> proccessCheckout(modelSettings1 mS, string[] checkouts)
+        static internal List<modelCheckout> proccessCheckout(modelSettings mS, string[] checkouts)
         {
             List<modelCheckout> listCheckout = new List<modelCheckout>();
             foreach (string stringLine in checkouts)

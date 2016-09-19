@@ -10,6 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DLL_CircPrintServer;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 
 namespace APP_CircPrintServer.Forms
 {
@@ -17,7 +20,7 @@ namespace APP_CircPrintServer.Forms
     {
         internal List<modelPOSTransLine> posPayments = new List<modelPOSTransLine>();
         internal List<modelPOSTransLine> posLines = new List<modelPOSTransLine>();
-        internal modelSettings1 mS = new modelSettings1();
+        internal modelSettings mS = new modelSettings();
         internal modelPOSTrans posTrans = new modelPOSTrans();
         int countPayments = 0;
         int countLines = 0;

@@ -1,4 +1,6 @@
-﻿using OLPL_APP_CircPrinter_Admin.Models;
+﻿using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
+using OLPL_APP_CircPrinter_Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,6 +20,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
         {
             Form1 fc = new Form1();
             fc = (Form1)Application.OpenForms["Form1"];
+            modelSettings mS = fc.mS;
             float x = 10;
             float y = 5;
             float width = 270.0F;
@@ -29,9 +32,9 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             drawFormatLeft.Alignment = StringAlignment.Near;
             StringFormat drawFormatRight = new StringFormat();
             drawFormatRight.Alignment = StringAlignment.Far;
-            foreach (elementClass l1 in fc.el1)
+            foreach (modelElement l1 in fc.el1)
             {
-                elementClass l2 = l1;
+                modelElement l2 = l1;
                 data1 = fixVars(l2,fc);
                 #region Logo
                 if (l1.name == "Logo")
@@ -202,7 +205,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                                 b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
                                 b.IncludeLabel = true;
                                 BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + fileControl.readTransitTo(fc, line.Replace("Transit to: ", "").Trim(),"barcode") + "d", Color.Black, Color.White, 200, 50);
+                                toBcodeImage = b.Encode(type, "a" + controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(),"barcode") + "d", Color.Black, Color.White, 200, 50);
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -341,7 +344,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         {
                             if (line.Contains("Transit Slip"))
                             {
-                                text = data1 + " " + fileControl.readTransitTo(fc, line.Replace("Transit Slip ", ""), "name");
+                                text = data1 + " " + controlFunctions.readTransitTo(mS, line.Replace("Transit Slip ", ""), "name");
                             }
                         }
                         y += l1.spaceTop;
@@ -512,7 +515,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         {
                             if (line.Contains("Transit To: "))
                             {
-                                text = data1 + " " + fileControl.readTransitTo(fc, line.Replace("Transit to: ", "").Trim(), "name");
+                                text = data1 + " " + controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(), "name");
                             }
                         }
                         y += l1.spaceTop;
@@ -583,7 +586,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         {
                             if (line.Contains("Transit To: "))
                             {
-                                text = data1 + " " + fileControl.readTransitTo(fc, line.Replace("Transit to: ", "").Trim(), "city");
+                                text = data1 + " " + controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(), "city");
                             }
                         }
                         y += l1.spaceTop;
@@ -890,13 +893,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Textline - UserRecordName")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data);
+                    data = controlFunctions.HTMLtoTXTUser(data);
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        foreach (string line in fileControl.GetUserRecord(data,"basic").Split(Environment.NewLine.ToCharArray()))
+                        foreach (string line in controlFunctions.proccessUserRecord(data,"basic").Split(Environment.NewLine.ToCharArray()))
                         {
                             if (line.Contains("NAME:"))
                             {
@@ -930,13 +933,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Textline - UserRecordID")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data);
+                    data = controlFunctions.HTMLtoTXTUser(data);
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        foreach (string line in fileControl.GetUserRecord(data, "basic").Split(Environment.NewLine.ToCharArray()))
+                        foreach (string line in controlFunctions.proccessUserRecord(data, "basic").Split(Environment.NewLine.ToCharArray()))
                         {
                             if (line.Contains("USER ID:"))
                             {
@@ -970,13 +973,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordAddress")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r","");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r","");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "address");
+                        text = controlFunctions.proccessUserRecord(data, "address");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1004,13 +1007,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordDemographic")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r", "");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r", "");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "demoinfo");
+                        text = controlFunctions.proccessUserRecord(data, "demoinfo");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1038,13 +1041,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordExtended")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r", "");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r", "");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "extinfo");
+                        text = controlFunctions.proccessUserRecord(data, "extinfo");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1072,13 +1075,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordCirculation")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r", "");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r", "");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "circinfo");
+                        text = controlFunctions.proccessUserRecord(data, "circinfo");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1106,13 +1109,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordCheckouts")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r", "");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r", "");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "checkouts");
+                        text = controlFunctions.proccessUserRecord(data, "checkouts");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1140,13 +1143,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordBills")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r", "");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r", "");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "bills");
+                        text = controlFunctions.proccessUserRecord(data, "bills");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1174,13 +1177,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 else if (l1.name == "Block - UserRecordHolds")
                 {
                     string data = File.ReadAllText("UserRecord.txt");
-                    data = fileControl.HTMLtoTXTUser(data).Replace("\r", "");
+                    data = controlFunctions.HTMLtoTXTUser(data).Replace("\r", "");
                     try
                     {
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        text = fileControl.GetUserRecord(data, "holds");
+                        text = controlFunctions.proccessUserRecord(data, "holds");
                         y += l1.spaceTop;
                         if (l1.align == "Right")
                         {
@@ -1206,7 +1209,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 #endregion
             }
         }
-        static string fixVars(elementClass l1, Form1 fc)
+        static string fixVars(modelElement l1, Form1 fc)
         {
             string data = "";
             bool none = true;

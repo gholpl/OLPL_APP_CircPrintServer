@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using APP_CircPrintServer.Functions;
+using DLL_CircPrintServer;
+using DLL_CircPrintServer.Models;
 using System.Diagnostics;
 
 namespace APP_CircPrintServer.Forms
@@ -16,7 +18,7 @@ namespace APP_CircPrintServer.Forms
     public partial class CCRefund : Form
     {
         internal modelPOSTrans mPOS;
-        internal modelSettings1 mS;
+        internal modelSettings mS;
         internal modelPOSTransLine posTransLine;
         public CCRefund()
         {

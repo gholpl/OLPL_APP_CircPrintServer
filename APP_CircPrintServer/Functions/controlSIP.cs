@@ -9,6 +9,7 @@ using Clc.Sip;
 using APP_CircPrintServer.Models;
 using APP_CircPrintServer.SIP2;
 using System.Diagnostics;
+using DLL_CircPrintServer.Classes;
 
 namespace APP_CircPrintServer.Functions
 {
@@ -16,7 +17,7 @@ namespace APP_CircPrintServer.Functions
     {
         private sip2 sipclient;
 
-        public static string getPatronInfo(modelSettings1 mS, modelPOSTrans mPOS)
+        public static string getPatronInfo(modelSettings mS, modelPOSTrans mPOS)
         {
             string name = "";
             string address = "";
@@ -97,7 +98,7 @@ namespace APP_CircPrintServer.Functions
             var response = txn.Response.Replace("\r", "").Replace("\n", "");
             return response;
         }
-        internal string checkoutItem(string barcode, string item, modelSettings1 mS)
+        internal string checkoutItem(string barcode, string item, modelSettings mS)
         {
             //Debugger.Launch();
             try
@@ -107,7 +108,7 @@ namespace APP_CircPrintServer.Functions
             }
             catch (Exception ex)
             {
-                FileControl.fileWriteLog(ex.Message + " textline intransit library ILLIBS Checkout Error connecting to SIP Server", mS);
+                controlFunctions.fileWriteLog(ex.Message + " textline intransit library ILLIBS Checkout Error connecting to SIP Server", mS);
                 return "none";
             }
             try
@@ -117,7 +118,7 @@ namespace APP_CircPrintServer.Functions
                 string strUser = LogOutput(sipclient.ItemCheckOut(barcode, "", item, null, "Y", "", "", "Y", "N"));
                 if (!strUser.ToUpper().Contains("CHARGED"))
                 {
-                    FileControl.fileWriteLog("textline intransit library ILLIBS Checkout Not CHecked Out", mS);
+                    controlFunctions.fileWriteLog("textline intransit library ILLIBS Checkout Not CHecked Out", mS);
                     return "none";
                 }
                 else
@@ -132,7 +133,7 @@ namespace APP_CircPrintServer.Functions
             }
             catch (Exception ex1)
             {
-                FileControl.fileWriteLog(ex1.Message + " textline intransit library ILLIBS Checkout", mS);
+                controlFunctions.fileWriteLog(ex1.Message + " textline intransit library ILLIBS Checkout", mS);
                 return "none";
             }
             return "none";

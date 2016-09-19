@@ -1,4 +1,5 @@
-﻿using OLPL_APP_CircPrinter_Admin.Functions;
+﻿using DLL_CircPrintServer.Models;
+using OLPL_APP_CircPrinter_Admin.Functions;
 using OLPL_APP_CircPrinter_Admin.Models;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace OLPL_APP_CircPrinter_Admin
     public partial class elementAdd : Form
     {
         internal Form1 fc;
-        public elementClass l1;
+        public modelElement l1;
         public bool elementNew;
         int index;
         public elementAdd()
@@ -87,7 +88,7 @@ namespace OLPL_APP_CircPrinter_Admin
             if (elementNew)
             {
                 
-                l1 = new elementClass();
+                l1 = new modelElement();
                 l1.id = fc.el1.Count + 1;
                 
             }

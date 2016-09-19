@@ -36,3 +36,6 @@ T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_Ci
 T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.pdb
 T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.formPOSPayment.resources
 T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.AskTransitLibrary.resources
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.AskTransitLibrary.resources
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.formPOSPayment.resources
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.changePrinter.resources

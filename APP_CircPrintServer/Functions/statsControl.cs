@@ -7,12 +7,15 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DLL_CircPrintServer;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 
 namespace APP_CircPrintServer.Functions
 {
     class statsControl
     {
-        public static void tickStats(modelSettings1 mS, string Type)
+        public static void tickStats(modelSettings mS, string Type)
         {
             if (mS.statsSwitch == "1")
             {
@@ -36,7 +39,7 @@ namespace APP_CircPrintServer.Functions
                 catch (Exception e)
                 {
                     MessageBox.Show("Stats are not working.  Please contact Admin");
-                    FileControl.fileWriteLog("stats are not working " + e.Message, mS);
+                    controlFunctions.fileWriteLog("stats are not working " + e.Message, mS);
                 }
             }
             

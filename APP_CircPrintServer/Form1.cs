@@ -7,6 +7,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using DLL_CircPrintServer;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 
 namespace APP_CircPrintServer
 {
@@ -25,14 +28,10 @@ namespace APP_CircPrintServer
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Visible = false;
-            //string[] args = Environment.GetCommandLineArgs();
-            //MessageBox.Show(args[0]);
-            modelSettings1 mS = FileControl.proccessSettingFile();
-            //MessageBox.Show(mS.fileLog);
+            modelSettings mS = controlSettings.proccessSettingFile();
             #region instreamcapture
             if (arg == "none")
             {
-                //MessageBox.Show("in cap");
                 string str = "";
                 string result = "";
                 using (Stream stdin = Console.OpenStandardInput())
@@ -41,10 +40,9 @@ namespace APP_CircPrintServer
                     int bytes;
                     while ((bytes = stdin.Read(buffer, 0, buffer.Length)) > 0)
                     {
-
                         str = str + System.Text.Encoding.Default.GetString(buffer);
                     }
-                    if (mS.switchAdminMode != "0") { FileControl.fileWriteLog(str, mS); }
+                    if (mS.switchAdminMode != "0") { controlFunctions.fileWriteLog(str, mS); }
 
 
                     if (str.Contains("Date due"))
@@ -65,35 +63,35 @@ namespace APP_CircPrintServer
                                     }
                                     else
                                     {
-                                        dataStr = File.ReadAllText(mS.fileTempData);
-                                        if (mS.switchAdminMode == "0") { File.Delete(mS.fileTempData); }
+                                        dataStr = File.ReadAllText(controlFunctions.fixVars(mS.fileTempData));
+                                        if (mS.switchAdminMode == "0") { File.Delete(controlFunctions.fixVars(mS.fileTempData)); }
                                         foreach (string str44 in dataStr.Split(Environment.NewLine.ToCharArray()))
                                         {
                                             if (str44.Length > 5)
                                             {
                                                 statsControl.tickStats(mS, "Items Checked out");
-                                                if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Items Checked out", mS); }
+                                                if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Items Checked out", mS); }
                                             }
                                         }
                                         checkRec = 0;
                                         statsControl.tickStats(mS, "Checkout Slips - Skipped");
-                                        if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Checkout Slips - Skipped", mS); }
+                                        if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Checkout Slips - Skipped", mS); }
                                     }
                                 }
 
                                 if (checkRec == 1)
                                 {
                                     statsControl.tickStats(mS, "Checkout Slips - Printed");
-                                    if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Checkout Slips - Printed", mS); }
-                                    dataStr = File.ReadAllText(mS.fileTempData);
-                                    if (mS.switchAdminMode == "0") { File.Delete(mS.fileTempData); }
+                                    if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Checkout Slips - Printed", mS); }
+                                    dataStr = File.ReadAllText(controlFunctions.fixVars(mS.fileTempData));
+                                    if (mS.switchAdminMode == "0") { File.Delete(controlFunctions.fixVars(mS.fileTempData)); }
                                     printControl.printPage(mS, dataStr, "checkout",this);
                                 }
                             }
                         }
                         catch (Exception e1)
                         {
-                            FileControl.fileWriteLog(e1.ToString(), mS);
+                            controlFunctions.fileWriteLog(e1.ToString(), mS);
                         }
                     }
                     else if (str.Contains('\f') && str.Contains("HOLD SLIP START"))
@@ -112,7 +110,7 @@ namespace APP_CircPrintServer
                             if (printRec == true)
                             {
                                 statsControl.tickStats(mS, "Hold Slips");
-                                if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Hold Slips", mS); }
+                                if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Hold Slips", mS); }
                                 dataStr = str;
                                 printControl.printPage(mS, dataStr, "holdsP1",this);
                                 if (mS.switchTwoPageHolds == "1")
@@ -123,7 +121,7 @@ namespace APP_CircPrintServer
                         }
                         catch (Exception e1)
                         {
-                            FileControl.fileWriteLog(e1.ToString(), mS);
+                            controlFunctions.fileWriteLog(e1.ToString(), mS);
                         }
                     }
                     else if (str.Contains("Transit Slip"))
@@ -142,7 +140,7 @@ namespace APP_CircPrintServer
                             dataStr = str;
                             
                             statsControl.tickStats(mS, "Transit Slips");
-                            if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Transit Slips" + dataStr, mS); }
+                            if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Transit Slips" + dataStr, mS); }
                             printControl.printPage(mS, dataStr, "intransit",this);
                         }
                     }
@@ -163,7 +161,6 @@ namespace APP_CircPrintServer
                             FormTest ft = new FormTest();
                             ft.Show();
                             modelPOSTrans posTrans = new modelPOSTrans();
-                            //modelPOS mPOS = new modelPOS();
                             posTrans.stationType = "Workstation";
                             List<modelPOSTransLine> lPOS = new List<modelPOSTransLine>();
                             string dataUpload = "";
@@ -212,18 +209,11 @@ namespace APP_CircPrintServer
                                             return "Invalid barcode.";
                                         return "";
                                     };
-                                    string value = "";
-                                    
-                                    //if (inP.Show("Enter User ID", "User ID:", ref value,validation) == DialogResult.OK)
-                                    //{
-                                    //    posTrans.userID = value;
-                                    //}
-                                   // MessageBox.Show(mPOS.operatorID + " " + mPOS.userID);
                                 }
                                 catch (Exception e1)
                                 {
                                     MessageBox.Show("Error Getting userid " + e1.Message);
-                                    FileControl.fileWriteLog(e1.ToString(), mS);
+                                    controlFunctions.fileWriteLog(e1.ToString(), mS);
                                 }
                             }
                             else
@@ -328,9 +318,6 @@ namespace APP_CircPrintServer
                                 else
                                 {
                                     #region cashmanagemnttrans
-                                    
-                                        DateTime dt1 = new DateTime();
-                                        //modelPOS mPOS = new modelPOS();
                                         #region CashManagementTransSale
                                         bool libName = false;
                                         modelPOSTransLine posTempLine = new modelPOSTransLine();
@@ -644,7 +631,7 @@ namespace APP_CircPrintServer
                                 }
                             }
                             catch(Exception e1) {
-                                FileControl.fileWriteLog(e1.ToString() + " - " + dataStr, mS);
+                                controlFunctions.fileWriteLog(e1.ToString() + " - " + dataStr, mS);
                                 var st = new StackTrace(e1, true);
                                 var frame = st.GetFrame(0);
                                 var line = frame.GetFileLineNumber();
@@ -658,14 +645,14 @@ namespace APP_CircPrintServer
                             if (MessageBox.Show("Does the patron want a reciept for this payment?", "Confirm Payment Reciept", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly) == DialogResult.No)
                             {
                                 statsControl.tickStats(mS, "Payment Slips - Skipped");
-                                if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Payment Slips - Skipped", mS); }
+                                if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Payment Slips - Skipped", mS); }
                                 printRec = false;
                             }
                         }
                         if (printRec == true)
                         {
                             statsControl.tickStats(mS, "Payment Slips - Printed");
-                            if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Payment Slips - Printed", mS); }
+                            if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Payment Slips - Printed", mS); }
                             printControl.printPage(mS, dataStr, "fine",this);
                         }
                     }
@@ -687,26 +674,26 @@ namespace APP_CircPrintServer
                                     if (str44.Length > 5)
                                     {
                                         statsControl.tickStats(mS, "Items Checked out");
-                                        if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Items Checked out", mS); }
+                                        if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Items Checked out", mS); }
                                     }
                                 }
                                 checkRec = 0;
                                 statsControl.tickStats(mS, "Checkout Slips - Skipped");
-                                if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Checkout Slips - Skipped", mS); }
+                                if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Checkout Slips - Skipped", mS); }
                             }
                         }
 
                         if (checkRec == 1)
                         {
                             statsControl.tickStats(mS, "Checkout Slips - Printed");
-                            if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Checkout Slips - Printed", mS); }
+                            if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Checkout Slips - Printed", mS); }
                             dataStr = File.ReadAllText(mS.fileTempData);
                             printControl.printPage(mS, dataStr, "checkout",this);
                         }
                     }
                     else
                     {
-                        FileControl.fileWriteLog("No Templete Applied to last job", mS);
+                        controlFunctions.fileWriteLog("No Templete Applied to last job", mS);
                         FileControl.fileWriteTempData(str, mS);
                     }
                 }
@@ -724,7 +711,7 @@ namespace APP_CircPrintServer
                     string screenCapture = File.ReadAllText(arg);
                     if (screenCapture.Contains("Check In : Issue Received"))
                     {
-                        String converted = FileControl.HTMLtoTXT(screenCapture);
+                        String converted = controlFunctions.HTMLtoTXT(screenCapture);
                         foreach (String str11 in converted.Split('^'))
                         {
                             if (str11.Contains("Copy:"))
@@ -747,16 +734,16 @@ namespace APP_CircPrintServer
                                 {
                                     if (MessageBox.Show("Do you want to print a serial routing slip?", "Confirm Serial Routing Slip", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly) == DialogResult.No)
                                     {
-                                        if (mS.switchAdminMode == "1") { FileControl.fileWriteLog(result, mS); }
+                                        if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog(result, mS); }
                                         statsControl.tickStats(mS, "Serial Routing Slips - Skipped");
                                         printRec = false;
                                     }
                                 }
                                 if (printRec == true)
                                 {
-                                    if (mS.switchAdminMode == "1") { FileControl.fileWriteLog(result, mS); }
+                                    if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog(result, mS); }
                                     statsControl.tickStats(mS, "Serial Routing Slips - Printed");
-                                    if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("Serial Routing Slips - Printed", mS); }
+                                    if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Serial Routing Slips - Printed", mS); }
                                     printControl.printPage(mS, result, "serialRoute",this);
                                 }
                             }
@@ -769,25 +756,25 @@ namespace APP_CircPrintServer
                         {
                             if (MessageBox.Show("Do you want to print a serial routing slip?", "Confirm Serial Routing Slip", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly) == DialogResult.No)
                             {
-                                if (mS.switchAdminMode == "1") { FileControl.fileWriteLog(screenCapture, mS); }
+                                if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog(screenCapture, mS); }
                                 statsControl.tickStats(mS, "User Record - Skipped");
                                 printRec = false;
                             }
                         }
                         if (printRec == true)
                         {
-                            if(mS.switchAdminMode == "1") { FileControl.fileWriteLog(screenCapture, mS); }
+                            if(mS.switchAdminMode == "1") { controlFunctions.fileWriteLog(screenCapture, mS); }
                             statsControl.tickStats(mS, "User Record - Printed");
-                            if (mS.switchAdminMode == "1") { FileControl.fileWriteLog("User Record - Printed", mS); }
+                            if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("User Record - Printed", mS); }
                             printControl.printPage(mS, screenCapture, "UserRecord",this);
                         }
                     }
                     else
                     {
-                        FileControl.fileWriteLog("Template not found", mS);
+                        controlFunctions.fileWriteLog("Template not found", mS);
                         if (mS.switchAdminMode == "1")
                         {
-                            FileControl.fileWriteLog(screenCapture, mS);
+                            controlFunctions.fileWriteLog(screenCapture, mS);
                         }
                         Process process = new Process();
                         process.StartInfo.FileName = arg;
@@ -796,7 +783,7 @@ namespace APP_CircPrintServer
                 }
                 catch (Exception e1)
                 {
-                    FileControl.fileWriteLog(e1.ToString(), mS);
+                    controlFunctions.fileWriteLog(e1.ToString(), mS);
                 }
             }
 

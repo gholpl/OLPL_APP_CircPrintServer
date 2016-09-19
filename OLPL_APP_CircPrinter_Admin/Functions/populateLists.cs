@@ -1,4 +1,5 @@
-﻿using OLPL_APP_CircPrinter_Admin.Models;
+﻿using DLL_CircPrintServer.Models;
+using OLPL_APP_CircPrinter_Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,7 +40,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 fc.cb_temp_transit.Items.Clear();
                 fc.cb_temp_serialRoute.Items.Clear();
                 fc.cb_temp_UserRecord.Items.Clear();
-                foreach (templatesClass cl1 in fc.tl1)
+                foreach (modelTemplate cl1 in fc.tl1)
                 {
                     ListViewItem item = new ListViewItem(new[] { cl1.name, cl1.type });
                     fc.listTemplates.Items.Add(item);
@@ -167,7 +168,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             fc.btnDeleteElement.Visible = true;
             fc.btnMoveDOwnElement.Visible = true;
             fc.btnMoveUpElelement.Visible = true;
-            foreach (elementClass ec1 in fc.el1)
+            foreach (modelElement ec1 in fc.el1)
             {
                 ListViewItem item = new ListViewItem(new[] { ec1.id.ToString(), ec1.name, ec1.data });
                 fc.listElements.Items.Add(item);
@@ -254,8 +255,8 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
         static internal void deleteElement(Form1 fc)
         {
             int index = 1;
-            elementClass ec1 = new elementClass();
-            foreach(elementClass ec in fc.el1)
+            modelElement ec1 = new modelElement();
+            foreach(modelElement ec in fc.el1)
             {
                 if(fc.listElements.SelectedItems[0].SubItems[0].Text == ec.id.ToString())
                 {
@@ -263,7 +264,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 }
             }
             fc.el1.Remove(ec1);
-            foreach (elementClass ec in fc.el1)
+            foreach (modelElement ec in fc.el1)
             {
                 ec.id = index;
                 index++;
@@ -277,10 +278,10 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 int indexSelected = int.Parse(fc.listElements.SelectedItems[0].SubItems[0].Text);
                 int indexUP = indexSelected - 1;
                 int indexDown = indexSelected;
-                elementClass ecSelected = new elementClass();
-                elementClass ecUp = new elementClass();
-                elementClass ecDown = new elementClass();
-                foreach (elementClass ec in fc.el1)
+                modelElement ecSelected = new modelElement();
+                modelElement ecUp = new modelElement();
+                modelElement ecDown = new modelElement();
+                foreach (modelElement ec in fc.el1)
                 {
 
                     if (indexUP.ToString() == ec.id.ToString())
@@ -305,7 +306,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 {
                     fc.el1.Insert(indexDown, ecSelected);
                 }
-                foreach (elementClass ec in fc.el1)
+                foreach (modelElement ec in fc.el1)
                 {
                     ec.id = index;
                     index++;

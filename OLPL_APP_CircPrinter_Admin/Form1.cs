@@ -9,6 +9,8 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using DLL_CircPrintServer.Models;
+using DLL_CircPrintServer.Classes;
 
 namespace OLPL_APP_CircPrinter_Admin
 {
@@ -16,8 +18,8 @@ namespace OLPL_APP_CircPrinter_Admin
     {
         internal string portName;
         public StreamWriter log;
-        internal List<elementClass> el1;
-        internal List<templatesClass> tl1;
+        internal List<modelElement> el1;
+        internal List<modelTemplate> tl1;
         internal bool notsaved;
         public string templateName = "";
         public string tempateType = "";
@@ -31,11 +33,12 @@ namespace OLPL_APP_CircPrinter_Admin
         internal string tempHoldsP2 = "";
         internal string tempSerialRoute = "";
         internal string tempUserRecord = "";
+        internal modelSettings mS;
         public Form1()
         {
             InitializeComponent();
-            el1 = new List<elementClass>();
-            tl1 = new List<templatesClass>();
+            el1 = new List<modelElement>();
+            tl1 = new List<modelTemplate>();
             sList = new List<settingsClass>();
 
         }
@@ -60,9 +63,10 @@ namespace OLPL_APP_CircPrinter_Admin
             //notsaved = false;
             pathEXE = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             populateLists.populatePrinters(this);
-            fileControl.proccessSettingFile(this);
+            mS = controlSettings.proccessSettingFile();
+            fileControl.proccessSettingFile(this, mS);
             populateLists.populateCustomSettings(this);
-            tl1 = fileControl.getTemplates(this);
+            tl1 = controlSettings.getTemplates(mS);
             fileControl.createLog(this);
             populateLists.populateTemplateListView(this);
             validationControl.testSettingsWrite(this);
@@ -75,7 +79,7 @@ namespace OLPL_APP_CircPrinter_Admin
             if (listElements.SelectedItems.Count > 0)
             {
                 bool done = false;
-                foreach (elementClass l1 in el1)
+                foreach (modelElement l1 in el1)
                 {
                     if (done==false)
                     {
@@ -188,7 +192,7 @@ namespace OLPL_APP_CircPrinter_Admin
             {
                 if (listTemplates.SelectedItems[0].Text == "Add New Template")
                 {
-                    el1 = new List<elementClass>();
+                    el1 = new List<modelElement>();
                     populateLists.populateList(this);
                     PrintControl.CreatePrintPreviewControl(this);
                     templeteName tp1 = new templeteName();
@@ -196,15 +200,15 @@ namespace OLPL_APP_CircPrinter_Admin
                 }
                 else
                 {
-                    foreach(templatesClass tl in tl1)
+                    foreach(modelTemplate tl in tl1)
                     {
                         if (tl.name == listTemplates.SelectedItems[0].Text)
                         {
                             label2.Text = tl.type + " templete named " + tl.name;
                             tempateType = tl.type;
                             templateName = tl.name;
-                            el1 = new List<elementClass>();
-                            foreach (elementClass el in tl.element)
+                            el1 = new List<modelElement>();
+                            foreach (modelElement el in tl.element)
                             {
                                 
                                 el1.Add(el);
@@ -233,14 +237,14 @@ namespace OLPL_APP_CircPrinter_Admin
             if (templateName.Length > 3)
             {
                 fileControl.writeTemplateFile(this);
-                tl1 = fileControl.getTemplates(this);
+                tl1 = controlSettings.getTemplates(mS);
                 populateLists.populateTemplateListView(this);
-                el1 = new List<elementClass>();
+                el1 = new List<modelElement>();
                 populateLists.populateList(this);
                 label2.Text = "";
                 tempateType = "";
                 templateName = "";
-                el1 = new List<elementClass>();
+                el1 = new List<modelElement>();
             }
             else
             {
