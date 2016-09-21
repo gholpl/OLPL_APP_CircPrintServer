@@ -17,6 +17,7 @@ using DLL_CircPrintServer;
 using DLL_CircPrintServer.Models;
 using DLL_CircPrintServer.Classes;
 using static DLL_CircPrintServer.Classes.controlFunctions;
+using System.Security.AccessControl;
 
 namespace OLPL_APP_CircPrinter_Admin.Functions
 {
@@ -108,7 +109,8 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             if (int.TryParse(mS.switchAskTransit, out value)) { fc.tbAskTransit.Value = value; } else { fc.tbAskTransit.Value = 0; }
             if (int.TryParse(mS.switchAskSerial, out value)) { fc.tbAskSerial.Value = value; } else { fc.tbAskSerial.Value = 0; }
             if (int.TryParse(mS.switchAdminMode, out value)) { fc.tbAdminMode.Value = value; } else { fc.tbAdminMode.Value = 0; }
-                fc.cbPOSEnable.Checked = mS.POSEnable;
+            if (int.TryParse(mS.viewAdvanced, out value)) { fc.tbAdvancedView.Value = value; } else { fc.tbAdvancedView.Value = 0; }
+            fc.cbPOSEnable.Checked = mS.POSEnable;
                 fc.tbPOSServerAPI.Text = mS.POSServerAPI;
                 fc.cbPOSEmailEnable.Checked = mS.POSEmailEnable;
                 fc.tbPOSServerEmailAPI.Text = mS.POSServerEmailAPI;
@@ -130,28 +132,6 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                     fc.sList.Add(sc1);
                 }
             }
-        static public void createLog(Form1 fc)
-        {
-            string logFile = "";
-            if (fc.tbLogLoc.Text.Contains("<temp>"))
-            {
-                logFile = fc.tbLogLoc.Text.Replace("<temp>", System.IO.Path.GetTempPath());
-                //System.IO.Path.GetTempPath()
-            }
-            else { logFile = fc.tbLogLoc.Text; }
-            if (!File.Exists(logFile))
-            {
-                try
-                {
-                    fc.log = File.CreateText(logFile);
-                }
-                catch (Exception) { fc.log = File.CreateText(System.IO.Path.GetTempPath() + "\\printProgramAdmin.log"); }
-            }
-            else
-            {
-                fc.log = File.AppendText(logFile);
-            }
-        }
         static internal void writeTemplateFile(Form1 fc)
         {
             string fileloc = "";
@@ -213,6 +193,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             setting.Write("General", "recieptTransitAsk", fc.tbAskTransit.Value.ToString());
             setting.Write("General", "recieptSerialAsk", fc.tbAskSerial.Value.ToString());
             setting.Write("General", "twoPageHolds", fc.tbTwoPageHolds.Value.ToString());
+            setting.Write("General", "viewAdvanced", fc.tbAdvancedView.Value.ToString());
             setting.Write("Stats", "statsON", fc.tbStatsOnOff.Value.ToString());
             setting.Write("Stats", "statsServer", fc.tbStatsServer.Text);
             setting.Write("Printing", "printerCheckout", fc.cbCircPrinter.Text.Replace(" (Not Found)", string.Empty));
@@ -261,6 +242,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                     setting.Write("Custom", cs1.name, cs1.value);
                 }
             }
+            AddFileSecurity(controlFunctions.fixVars("<ProgramData>\\CircPrintSoftware\\program.Settings"), "Users", FileSystemRights.FullControl, AccessControlType.Allow);
         }
 
     }

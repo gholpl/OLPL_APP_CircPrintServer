@@ -67,7 +67,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Functions\fileControl.cs" />
-    <Compile Include="Functions\imageControl.cs" />
     <Compile Include="Functions\pageControl.cs" />
     <Compile Include="Functions\populateLists.cs" />
     <Compile Include="Functions\PrintControl.cs" />

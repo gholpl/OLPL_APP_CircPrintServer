@@ -35,13 +35,13 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             foreach (modelElement l1 in fc.el1)
             {
                 modelElement l2 = l1;
-                data1 = fixVars(l2,fc);
+                data1 = controlFunctions.fixVarsElement(l2,mS);
                 #region Logo
                 if (l1.name == "Logo")
                 {
                     try
                     {
-                        Bitmap logo = imageControl.ResizeImage(new Bitmap(data1), l1.width, l1.height);
+                        Bitmap logo = controlFunctions.ResizeImage(new Bitmap(data1), l1.width, l1.height);
                         if (l1.align == "Right")
                         {
                             e.Graphics.DrawImage(logo, width - (logo.Width), y + l1.spaceTop);
@@ -205,7 +205,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                                 b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
                                 b.IncludeLabel = true;
                                 BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(),"barcode") + "d", Color.Black, Color.White, 200, 50);
+                                toBcodeImage = b.Encode(type, "a" + controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(),"barcode") + "d", Color.Black, Color.White, 250, 80);
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -242,7 +242,7 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                                 b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
                                 b.IncludeLabel = true;
                                 BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + line.Replace("Item ID: ", "") + "d", Color.Black, Color.White, 200, 50);
+                                toBcodeImage = b.Encode(type, "a" + line.Replace("Item ID: ", "") + "d", Color.Black, Color.White, 250, 80);
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -1208,53 +1208,6 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 }
                 #endregion
             }
-        }
-        static string fixVars(modelElement l1, Form1 fc)
-        {
-            string data = "";
-            bool none = true;
-            if (l1.data.Contains("<<<") && l1.data.Contains(">>>"))
-            {
-
-            }
-            else if (l1.data.Contains("<<") && l1.data.Contains(">>"))
-            {
-                data = l1.data;
-                if(l1.data.Contains("<<") && l1.data.Contains(">>"))
-                {
-                    foreach (settingsClass sc1 in fc.sList)
-                    {
-                        if (data.Contains("<<" + sc1.name + ">>"))
-                        {
-                            data = data.Replace("<<" + sc1.name + ">>", sc1.value);
-                            none = false;
-                        }
-                    }
-                }
-                
-            }
-            if (l1.data.Contains("<exe>"))
-            {
-                data = data + l1.data.Replace("<exe>", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
-                none = false;
-            }
-            if (l1.data.Contains("<ProgramData>"))
-            {
-                data = data + l1.data.Replace("<ProgramData>", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\");
-                none = false;
-            }
-            if (l1.data.Contains("<longdate>"))
-            {
-                data = data + l1.data.Replace("<longdate>", DateTime.Now.ToString());
-                none = false;
-            }
-            if (l1.data.Contains("<shortdate>"))
-            {
-                data = data + l1.data.Replace("<shortdate>", DateTime.Now.ToShortDateString());
-                none = false;
-            }
-            if (none == true) { data = l1.data; }
-            return data;
         }
     }
 }

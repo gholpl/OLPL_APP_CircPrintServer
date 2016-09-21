@@ -4,6 +4,7 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OLPL_APP_CircPrinter_Admin.Functions
 {
@@ -18,7 +19,6 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
             fc.ppc1.Document.DefaultPageSettings.PaperSize = new PaperSize("Custom", 300, 700);
             fc.ppc1.UseAntiAlias = true;
             docToPrint.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(pageControl.PrintPage);
-
         }
     }
 }

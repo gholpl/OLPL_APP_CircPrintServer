@@ -61,7 +61,7 @@ namespace DLL_CircPrintServer.Models
         public bool ErrorEMailEnable { get; set; }
         public string ErrorEMailAddress { get; set; }
         public bool backupFileRunControl { get; set; }
-        public bool viewAdvanced { get; set; }
+        public string viewAdvanced { get; set; }
         public bool generateBackup { get; set; }
     }
 }

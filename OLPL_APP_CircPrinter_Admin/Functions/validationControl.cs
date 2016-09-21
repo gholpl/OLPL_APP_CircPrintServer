@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 
 namespace OLPL_APP_CircPrinter_Admin.Functions
 {
@@ -38,14 +40,27 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                 {
                     foreach (PropertyData property in printer.Properties)
                     {
-                        fc.log.WriteLine(string.Format("{0}: {1}", property.Name, property.Value));
+                        //fc.log.WriteLine(string.Format("{0}: {1}", property.Name, property.Value));
                         //MessageBox.Show(string.Format("{0}: {1}", property.Name, property.Value));
                     }
                 }
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                fc.log.WriteLine(e.Message);
+                //controlFunctions.fileWriteLog(e.Message,mS);
+            }
+        }
+        internal static void setupViews(Form1 fc, modelSettings mS)
+        {
+            if(mS.viewAdvanced == "0")
+            {
+                fc.tabControl1.TabPages.RemoveByKey("tabPage4");
+                fc.tabControl1.TabPages.RemoveByKey("tabPOS");
+                fc.tabControl1.TabPages.RemoveByKey("tabPage7");
+            }
+            else
+            {
+                
             }
         }
     }

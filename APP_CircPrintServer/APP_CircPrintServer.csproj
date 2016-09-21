@@ -86,11 +86,11 @@
     </Compile>
     <Compile Include="Forms\inputBox.cs" />
     <Compile Include="Functions\controlPOS.cs" />
+    <Compile Include="Functions\controlPrints.cs" />
     <Compile Include="Functions\controlSIP.cs" />
+    <Compile Include="Functions\controlValidation.cs" />
     <Compile Include="Functions\FileControl.cs" />
-    <Compile Include="Functions\imageControl.cs" />
     <Compile Include="Functions\listControl.cs" />
-    <Compile Include="Functions\printControl.cs" />
     <Compile Include="Functions\statsControl.cs" />
     <Compile Include="Models\modelCheckout.cs" />
     <Compile Include="Models\modelPOS.cs" />

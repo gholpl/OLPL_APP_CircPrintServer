@@ -725,7 +725,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:OLPL_APP_CircPrinter_Admin, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:OLPL_APP_CircPrinter_Admin, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_492F25E10607D6F50F964D048A02FB04"
@@ -907,7 +907,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:APP_CircPrintServer_SetDeps, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:APP_CircPrintServer_SetDeps, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8EA34E14D8E888C082A8EE4D17993415"
@@ -1189,7 +1189,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DLL_CircPrintServer, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DLL_CircPrintServer, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_EC6F23B69E5E9DC4E805224AFBFEB27C"
@@ -1303,15 +1303,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CircPrintServer"
-        "ProductCode" = "8:{E6ECC2DA-4F4C-4957-84EF-2F265D3361A8}"
-        "PackageCode" = "8:{960CA2F8-A7C4-47AE-9B7D-01EC17690CF9}"
+        "ProductCode" = "8:{5FDFF3E5-EBFD-4F5E-94D1-DB6AE0E81928}"
+        "PackageCode" = "8:{11CEC310-5B9A-4D03-B3C4-37D8983BC12A}"
         "UpgradeCode" = "8:{85BA3601-F8DC-457B-82EB-2FD33D56D692}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.3.1000"
+        "ProductVersion" = "8:1.3.1025"
         "Manufacturer" = "8:Oak Lawn Public Library"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

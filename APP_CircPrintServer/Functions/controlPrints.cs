@@ -1,5 +1,6 @@
-﻿using APP_CircPrintServer.Forms;
-using APP_CircPrintServer.Models;
+﻿using APP_CircPrintServer.Models;
+using DLL_CircPrintServer.Classes;
+using DLL_CircPrintServer.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,123 +10,108 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using DLL_CircPrintServer;
-using DLL_CircPrintServer.Classes;
-using DLL_CircPrintServer.Models;
 using System.Windows.Forms;
 
 namespace APP_CircPrintServer.Functions
 {
-    class printControl
+    class controlPrints
     {
-        static Form1 frmMain;
-        static string datastr = "";
-        static List<modelElement> lEl = new List<modelElement>();
-        static modelTemplate tc = new modelTemplate();
         static modelSettings mS2 = new modelSettings();
-        public static void printPage(modelSettings mS,string data,string type, Form1 frmMain1)
+        static string datastr = "";
+        static modelTemplate tc = new modelTemplate();
+        public static void printStart(modelSettings mS, string data, string type, Form1 frmMain1)
         {
-            try
+            //Debugger.Launch();
+            mS2 = mS;
+            datastr = data;
+            PrintDocument docToPrint = new PrintDocument();
+            docToPrint.DocumentName = "Customer Receipt";
+            docToPrint.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(setupPage);
+            PrinterSettings ps = new PrinterSettings();
+            if (type == "checkout")
             {
-                frmMain = frmMain1;
-                datastr = data;
-                mS2 = mS;
-                PrintDocument recordDoc = new PrintDocument();
-                recordDoc.DocumentName = "Customer Receipt";
-                PrinterSettings ps = new PrinterSettings();
-                Debugger.Launch();
-                if (type == "checkout")
-                {
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempCirc+ ".template"), mS,"Circ");
-
-                    ps.PrinterName = mS.printerCirc;
-                }
-                if (type == "holdsP1")
-                {
-                    
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempHoldsP1 + ".template"), mS,"HoldsPage1");
-                    ps.PrinterName = mS.printerHolds;
-                }
-                if (type == "holdsP2")
-                {
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempHoldsP2 + ".template"), mS,"HoldsPage2");
-                    ps.PrinterName = mS.printerHolds;
-                }
-                if (type == "fine")
-                {
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempFine + ".template"), mS,"Financial");
-                    ps.PrinterName = mS.printerFine;
-                }
-                if (type == "serialRoute")
-                {
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempSerialRoute + ".template"), mS,"SerialRoute");
-                    ps.PrinterName = mS.printerSerialRoute;
-                }
-                if (type == "UserRecord")
-                {
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempUserRecord + ".template"), mS,"UserRecord");
-                    ps.PrinterName = mS.printerUserRecord;
-                }
-                if (type == "intransit")
-                {
-                    tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempInTransit + ".template"), mS,"InTransit");
-                    ps.PrinterName = mS.printerInTransit;
-                    recordDoc.PrintController = new StandardPrintController();
-                }
-                recordDoc.PrintPage += new PrintPageEventHandler(PrintPage);
-                if (mS.switchAdminMode == "0")
-                {
-
-                    recordDoc.PrinterSettings = ps;
-                    recordDoc.Print();
-                    File.Delete(controlFunctions.fixVars(mS.fileTempData));
-                }
-                else
-                {
-                    recordDoc.PrinterSettings = ps;
-                    PrintPreviewDialog printPrvDlg = new PrintPreviewDialog();
-                    printPrvDlg.Document = recordDoc;
-                    printPrvDlg.Width = 1200;
-                    printPrvDlg.Height = 800;
-                    printPrvDlg.ShowDialog();
-                }
-                lEl = tc.element;
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempCirc + ".template"), mS, "Circ");
+                mS.printerCirc = controlValidation.verifyPrinter(mS.printerCirc, "printerCheckout", mS);
+                ps.PrinterName = mS.printerCirc;
             }
-            catch (Exception e)
+            else if (type == "holdsP1")
             {
-                controlFunctions.fileWriteLog(e.ToString(), mS2);
-            }
 
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempHoldsP1 + ".template"), mS, "HoldsPage1");
+                mS.printerHolds = controlValidation.verifyPrinter(mS.printerHolds, "printerHolds", mS);
+                ps.PrinterName = mS.printerHolds;
+            }
+            else if (type == "holdsP2")
+            {
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempHoldsP2 + ".template"), mS, "HoldsPage2");
+                mS.printerHolds = controlValidation.verifyPrinter(mS.printerHolds, "printerHolds", mS);
+                ps.PrinterName = mS.printerHolds;
+            }
+            else if (type == "fine")
+            {
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempFine + ".template"), mS, "Financial");
+                mS.printerFine = controlValidation.verifyPrinter(mS.printerFine, "printerFine", mS);
+                ps.PrinterName = mS.printerFine;
+            }
+            else if (type == "serialRoute")
+            {
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempSerialRoute + ".template"), mS, "SerialRoute");
+                mS.printerSerialRoute = controlValidation.verifyPrinter(mS.printerSerialRoute, "printerSerialRoute", mS);
+                ps.PrinterName = mS.printerSerialRoute;
+            }
+            else if (type == "UserRecord")
+            {
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempUserRecord + ".template"), mS, "UserRecord");
+                mS.printerUserRecord = controlValidation.verifyPrinter(mS.printerUserRecord, "printerUserRecord", mS);
+                ps.PrinterName = mS.printerUserRecord;
+            }
+            else if (type == "intransit")
+            {
+                tc = controlSettings.readTemplateFile(controlFunctions.fixVars(mS.tempLocation + mS.tempInTransit + ".template"), mS, "InTransit");
+                mS.printerInTransit = controlValidation.verifyPrinter(mS.printerInTransit, "printerInTransit", mS);
+                ps.PrinterName = mS.printerInTransit;
+            }
+            docToPrint.PrintController = new StandardPrintController();
+            docToPrint.PrinterSettings = ps;
+            if (mS.switchAdminMode == "0")
+            {
+                docToPrint.Print();
+                File.Delete(controlFunctions.fixVars(mS.fileTempData));
+            }
+            else
+            {
+                PrintPreviewDialog printPrvDlg = new PrintPreviewDialog();
+                printPrvDlg.Document = docToPrint;
+                printPrvDlg.Width = 1200;
+                printPrvDlg.Height = 800;
+                printPrvDlg.ShowDialog();
+            }
         }
-        internal static void PrintPage(object sender, PrintPageEventArgs e)
+        public static void setupPage(object sender, PrintPageEventArgs e)
         {
             float x = 10;
             float y = 5;
             float width = 270.0F;
             float height = 0F;
             string data1 = "";
-           
             StringFormat drawFormatCenter = new StringFormat();
             drawFormatCenter.Alignment = StringAlignment.Center;
             StringFormat drawFormatLeft = new StringFormat();
             drawFormatLeft.Alignment = StringAlignment.Near;
             StringFormat drawFormatRight = new StringFormat();
             drawFormatRight.Alignment = StringAlignment.Far;
-            
-            foreach (modelElement l1 in lEl)
+            foreach (modelElement l1 in tc.element)
             {
                 modelElement l2 = l1;
-                data1 = fixVars(l2,mS2);
-                //MessageBox.Show(data1);
+                data1 = controlFunctions.fixVarsElement(l2, mS2);
                 #region Logo
                 if (l1.name == "Logo")
                 {
                     try
                     {
-                        Bitmap logo = imageControl.ResizeImage(new Bitmap(data1), l1.width, l1.height);
-                        //MessageBox.Show(data1);
+                        Bitmap logo = controlFunctions.ResizeImage(new Bitmap(data1), l1.width, l1.height);
+                        
                         if (l1.align == "Right")
                         {
                             e.Graphics.DrawImage(logo, width - (logo.Width), y + l1.spaceTop);
@@ -142,7 +128,7 @@ namespace APP_CircPrintServer.Functions
                         y += l1.spaceTop;
                         y += logo.Height;
                     }
-                    catch (Exception e1) { MessageBox.Show(e1.Message); controlFunctions.fileWriteLog(e1.Message + " Logo import problem " + l2.data,mS2); }
+                    catch (Exception e1) { MessageBox.Show(e1.Message); controlFunctions.fileWriteLog(e1.Message + " Logo import problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline
@@ -173,7 +159,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Checkout Block
@@ -230,7 +216,7 @@ namespace APP_CircPrintServer.Functions
                             }
                         }
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Payment Block
@@ -267,7 +253,7 @@ namespace APP_CircPrintServer.Functions
                             }
                         }
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " Payment block render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " Payment block render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Barcode - ToLibrary
@@ -278,13 +264,13 @@ namespace APP_CircPrintServer.Functions
                     {
                         foreach (string line in datastr.Split(Environment.NewLine.ToCharArray()))
                         {
-                            if (line.Contains("Transit To: "))
+                            if (line.ToUpper().Contains("TRANSIT TO: "))
                             {
                                 BarcodeLib.Barcode b = new BarcodeLib.Barcode();
                                 b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
                                 b.IncludeLabel = true;
                                 BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + controlFunctions.readTransitTo(mS2, line.Replace("Transit to: ", "").Trim(), "barcode") + "d", Color.Black, Color.White, 200, 50);
+                                toBcodeImage = b.Encode(type, "a" + controlFunctions.readTransitTo(mS2, line.ToUpper().Replace("TRANSIT TO: ", "").Trim(), "barcode") + "d", Color.Black, Color.White, 250, 90);
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -303,7 +289,7 @@ namespace APP_CircPrintServer.Functions
                             }
                         }
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " Barcode tolibrary proccessing problem",mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " Barcode tolibrary proccessing problem", mS2); }
                 }
                 #endregion
                 #region Barcode - ItemID
@@ -314,13 +300,13 @@ namespace APP_CircPrintServer.Functions
                     {
                         foreach (string line in datastr.Split(Environment.NewLine.ToCharArray()))
                         {
-                            if (line.Contains("Item ID: "))
+                            if (line.ToUpper().Contains("ITEM ID: "))
                             {
                                 BarcodeLib.Barcode b = new BarcodeLib.Barcode();
                                 b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
                                 b.IncludeLabel = true;
                                 BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + line.Replace("Item ID: ", "") + "d", Color.Black, Color.White, 200, 50);
+                                toBcodeImage = b.Encode(type, "a" + line.ToUpper().Replace("ITEM ID: ", "") + "d", Color.Black, Color.White, 250, 90);
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -339,7 +325,7 @@ namespace APP_CircPrintServer.Functions
                             }
                         }
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " Barcode tolibrary proccessing problem",mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " Barcode tolibrary proccessing problem", mS2); }
                 }
                 #endregion
                 #region Textline - FirstName
@@ -403,7 +389,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - From Library Name
@@ -442,7 +428,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline intransit library name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline intransit library name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - HoldExpire
@@ -491,7 +477,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - Item ID
@@ -529,7 +515,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - Item Title
@@ -567,7 +553,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline intransit library name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline intransit library name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - ToLibraryName
@@ -580,17 +566,17 @@ namespace APP_CircPrintServer.Functions
                         Font font = l1.fontName;
                         foreach (string line in datastr.Split(Environment.NewLine.ToCharArray()))
                         {
-                            
+
                             if (line.Contains("Transit to: "))
                             {
-                               // Debugger.Launch();
+                                // Debugger.Launch();
                                 //controlFunctions.fileWriteLog("TT" + FileControl.readTransitTo(mS2, line.Replace("Transit to: ", ""),"name"), mS2);
                                 if (line.ToUpper().Contains("ILL_LIBS"))
                                 {
                                     foreach (string line2 in datastr.Split(Environment.NewLine.ToCharArray()))
                                     {
-                                       
-                                        if(line2.ToUpper().Contains("USER NAME:")) { text = data1 + line2.Split(',')[0].Replace("User name: ", "").Trim(); }
+
+                                        if (line2.ToUpper().Contains("USER NAME:")) { text = data1 + line2.Split(',')[0].Replace("User name: ", "").Trim(); }
                                     }
                                 }
                                 else
@@ -605,7 +591,7 @@ namespace APP_CircPrintServer.Functions
                                         text = data1 + " " + libName;
                                     }
                                 }
-                             }
+                            }
                         }
                         y += l1.spaceTop;
                         if (l1.align == "Right")
@@ -627,7 +613,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline intransit library name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline intransit library name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - ILLLibsCeckout
@@ -643,7 +629,7 @@ namespace APP_CircPrintServer.Functions
 
                             if (line.Contains("Transit to: "))
                             {
-                                 //Debugger.Launch();
+                                //Debugger.Launch();
                                 //controlFunctions.fileWriteLog("TT" + FileControl.readTransitTo(mS2, line.Replace("Transit to: ", ""),"name"), mS2);
                                 if (line.ToUpper().Contains("ILL_LIBS"))
                                 {
@@ -719,7 +705,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - SerialTitle
@@ -757,7 +743,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline serial title render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline serial title render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - SerialEnumeration
@@ -795,7 +781,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - SerialChronology
@@ -833,7 +819,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - SerialRouteTO
@@ -871,7 +857,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline in transit city name render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - UserPhoneNumber
@@ -899,7 +885,7 @@ namespace APP_CircPrintServer.Functions
                                     {
                                         if (line3.Contains("Title: "))
                                         {
-                                            title= line3.Replace("Title: ", "");
+                                            title = line3.Replace("Title: ", "");
                                         }
                                     }
                                     //callControl.callPatron(mS2, line.Replace("Phone number: ", ""),title);
@@ -929,7 +915,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - VerticalLastName
@@ -997,7 +983,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - UserRecordName
@@ -1013,7 +999,7 @@ namespace APP_CircPrintServer.Functions
                             if (line.Contains("NAME:"))
                             {
                                 text = data1 + " " + line.Split(new string[] { "NAME: " }, StringSplitOptions.None)[1].Split(new string[] { " PRIVILEGE " }, StringSplitOptions.None)[0];
-                                if(text.Contains("USER ID:")) { text = text.Split(new string[] { "USER ID:" }, StringSplitOptions.None)[0].Replace("</td>",String.Empty); }
+                                if (text.Contains("USER ID:")) { text = text.Split(new string[] { "USER ID:" }, StringSplitOptions.None)[0].Replace("</td>", String.Empty); }
                             }
                         }
                         y += l1.spaceTop;
@@ -1036,7 +1022,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Textline - UserRecordID
@@ -1074,7 +1060,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Block - UserRecordAddress
@@ -1107,7 +1093,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Block - UserRecordDemographic
@@ -1119,7 +1105,7 @@ namespace APP_CircPrintServer.Functions
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        foreach(string line in controlFunctions.proccessUserRecord(datastr, "demoinfo").Split(new string[] { "   " },StringSplitOptions.None))
+                        foreach (string line in controlFunctions.proccessUserRecord(datastr, "demoinfo").Split(new string[] { "   " }, StringSplitOptions.None))
                         {
                             text = text + line.TrimStart() + Environment.NewLine;
                         }
@@ -1144,7 +1130,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Block - UserRecordExtended
@@ -1177,7 +1163,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Block - UserRecordCirculation
@@ -1210,7 +1196,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Block - UserRecordCheckouts
@@ -1222,13 +1208,13 @@ namespace APP_CircPrintServer.Functions
                         string text = "";
                         SolidBrush drawBrush = new SolidBrush(Color.Black);
                         Font font = l1.fontName;
-                        foreach(string line in controlFunctions.proccessUserRecord(datastr, "checkouts").Split(Environment.NewLine.ToCharArray()))
+                        foreach (string line in controlFunctions.proccessUserRecord(datastr, "checkouts").Split(Environment.NewLine.ToCharArray()))
                         {
                             string line2 = line.Replace(Environment.NewLine, "");
                             //controlFunctions.fileWriteLog(line, mS2);
                             if (line.Contains("ITEM ID: "))
                             {
-                                foreach(string innerline in line2.Split(new string[] { "   " }, StringSplitOptions.None))
+                                foreach (string innerline in line2.Split(new string[] { "   " }, StringSplitOptions.None))
                                 {
                                     if (!innerline.Contains("") || innerline != String.Empty)
                                     {
@@ -1242,7 +1228,7 @@ namespace APP_CircPrintServer.Functions
                                 if (!line2.Contains("") || line2 != String.Empty)
                                 {
 
-                                    text = text + line2.TrimStart().Replace(Environment.NewLine,"")+Environment.NewLine;
+                                    text = text + line2.TrimStart().Replace(Environment.NewLine, "") + Environment.NewLine;
                                 }
                             }
                         }
@@ -1266,7 +1252,7 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
                 #region Block - UserRecordBills
@@ -1380,69 +1366,12 @@ namespace APP_CircPrintServer.Functions
                         }
                         // y += e.Graphics.MeasureString(text, font,width).Height;
                     }
-                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data,mS2); }
+                    catch (Exception e1) { controlFunctions.fileWriteLog(e1.Message + " textline ItemID render problem " + l2.data, mS2); }
                 }
                 #endregion
-            }
-        }
-        static string fixVars(modelElement l1, modelSettings mS)
-        {
-            string data = "";
-            bool none = true;
-            if (l1.data.Contains("<<<") && l1.data.Contains(">>>"))
-            {
 
             }
-            else if (l1.data.Contains("<<") && l1.data.Contains(">>"))
-            {
-                data = l1.data;
-                if (l1.data.Contains("<<") && l1.data.Contains(">>"))
-                {
-                    foreach (modelSettingsCustom sc1 in mS.customSettings)
-                    {
-                        if (data.Contains("<<" + sc1.name + ">>"))
-                        {
-                            data = data.Replace("<<" + sc1.name + ">>", sc1.value);
-                            none = false;
-                        }
-                    }
-                }
-            }
-            if (l1.data.Contains("<exe>"))
-            {
-                //MessageBox.Show(data);
-                data = data + l1.data.Replace("<exe>", System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\");
-                none = false;
-            }
-            if (l1.data.Contains("<ProgramData>"))
-            {
-                data = data + l1.data.Replace("<ProgramData>", Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\");
-                none = false;
-            }
-            if (l1.data.Contains("<longdate>"))
-            {
-                data = data + l1.data.Replace("<longdate>", DateTime.Now.ToString());
-                none = false;
-            }
-            if (l1.data.Contains("<shortdate>"))
-            {
-                data = data + l1.data.Replace("<shortdate>", DateTime.Now.ToShortDateString());
-                none = false;
-            }
-            if (none == true) { data = l1.data; }
-            return data;
         }
-        static string verifyPrinter(string printer, string type, modelSettings mS)
-        {
-            if(printer.ToUpper().Contains("NONE")|| printer.Length < 1)
-            {
-
-            }
-            else
-            {
-                return printer;
-            }
-            return "";
-        }
+        
     }
 }

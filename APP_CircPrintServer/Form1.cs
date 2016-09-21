@@ -43,8 +43,6 @@ namespace APP_CircPrintServer
                         str = str + System.Text.Encoding.Default.GetString(buffer);
                     }
                     if (mS.switchAdminMode != "0") { controlFunctions.fileWriteLog(str, mS); }
-
-
                     if (str.Contains("Date due"))
                     {
                         int check = 0;
@@ -85,7 +83,7 @@ namespace APP_CircPrintServer
                                     if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Checkout Slips - Printed", mS); }
                                     dataStr = File.ReadAllText(controlFunctions.fixVars(mS.fileTempData));
                                     if (mS.switchAdminMode == "0") { File.Delete(controlFunctions.fixVars(mS.fileTempData)); }
-                                    printControl.printPage(mS, dataStr, "checkout",this);
+                                    controlPrints.printStart(mS, dataStr, "checkout",this);
                                 }
                             }
                         }
@@ -112,10 +110,10 @@ namespace APP_CircPrintServer
                                 statsControl.tickStats(mS, "Hold Slips");
                                 if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Hold Slips", mS); }
                                 dataStr = str;
-                                printControl.printPage(mS, dataStr, "holdsP1",this);
+                                controlPrints.printStart(mS, dataStr, "holdsP1",this);
                                 if (mS.switchTwoPageHolds == "1")
                                 {
-                                    printControl.printPage(mS, dataStr, "holdsP2",this);
+                                    controlPrints.printStart(mS, dataStr, "holdsP2",this);
                                 }
                             }
                         }
@@ -141,7 +139,7 @@ namespace APP_CircPrintServer
                             
                             statsControl.tickStats(mS, "Transit Slips");
                             if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Transit Slips" + dataStr, mS); }
-                            printControl.printPage(mS, dataStr, "intransit",this);
+                            controlPrints.printStart(mS, dataStr, "intransit",this);
                         }
                     }
 
@@ -653,7 +651,7 @@ namespace APP_CircPrintServer
                         {
                             statsControl.tickStats(mS, "Payment Slips - Printed");
                             if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Payment Slips - Printed", mS); }
-                            printControl.printPage(mS, dataStr, "fine",this);
+                            controlPrints.printStart(mS, dataStr, "fine",this);
                         }
                     }
                     else if (str.Contains('\f'))
@@ -687,8 +685,8 @@ namespace APP_CircPrintServer
                         {
                             statsControl.tickStats(mS, "Checkout Slips - Printed");
                             if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Checkout Slips - Printed", mS); }
-                            dataStr = File.ReadAllText(mS.fileTempData);
-                            printControl.printPage(mS, dataStr, "checkout",this);
+                            dataStr = File.ReadAllText(controlFunctions.fixVars(mS.fileTempData));
+                            controlPrints.printStart(mS, dataStr, "checkout",this);
                         }
                     }
                     else
@@ -744,7 +742,7 @@ namespace APP_CircPrintServer
                                     if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog(result, mS); }
                                     statsControl.tickStats(mS, "Serial Routing Slips - Printed");
                                     if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("Serial Routing Slips - Printed", mS); }
-                                    printControl.printPage(mS, result, "serialRoute",this);
+                                    controlPrints.printStart(mS, result, "serialRoute",this);
                                 }
                             }
                         }
@@ -766,7 +764,7 @@ namespace APP_CircPrintServer
                             if(mS.switchAdminMode == "1") { controlFunctions.fileWriteLog(screenCapture, mS); }
                             statsControl.tickStats(mS, "User Record - Printed");
                             if (mS.switchAdminMode == "1") { controlFunctions.fileWriteLog("User Record - Printed", mS); }
-                            printControl.printPage(mS, screenCapture, "UserRecord",this);
+                            controlPrints.printStart(mS, screenCapture, "UserRecord",this);
                         }
                     }
                     else

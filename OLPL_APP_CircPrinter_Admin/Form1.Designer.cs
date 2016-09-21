@@ -42,6 +42,12 @@
             this.lbl_portRedirInsall = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.tbErrorEmalAddress = new System.Windows.Forms.TextBox();
+            this.tbErrorEmailServer = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.cbErrorEMailEnable = new System.Windows.Forms.CheckBox();
+            this.label58 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label50 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
@@ -186,16 +192,14 @@
             this.stats_PortRedirCreate = new System.Windows.Forms.Timer(this.components);
             this.stats_PrinterCreated = new System.Windows.Forms.Timer(this.components);
             this.stat_SirsiSettings = new System.Windows.Forms.Timer(this.components);
-            this.tbErrorEmalAddress = new System.Windows.Forms.TextBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.tbErrorEmailServer = new System.Windows.Forms.TextBox();
-            this.label58 = new System.Windows.Forms.Label();
-            this.cbErrorEMailEnable = new System.Windows.Forms.CheckBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.tbAdvancedView = new System.Windows.Forms.TrackBar();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbAskUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAskPayment)).BeginInit();
@@ -221,7 +225,7 @@
             this.tabPOS.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbAdvancedView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -383,8 +387,73 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.tbErrorEmalAddress);
+            this.groupBox9.Controls.Add(this.tbErrorEmailServer);
+            this.groupBox9.Controls.Add(this.label57);
+            this.groupBox9.Controls.Add(this.cbErrorEMailEnable);
+            this.groupBox9.Controls.Add(this.label58);
+            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox9.Location = new System.Drawing.Point(486, 237);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(563, 129);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Error Handling Email";
+            // 
+            // tbErrorEmalAddress
+            // 
+            this.tbErrorEmalAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tbErrorEmalAddress.Location = new System.Drawing.Point(172, 88);
+            this.tbErrorEmalAddress.Name = "tbErrorEmalAddress";
+            this.tbErrorEmalAddress.Size = new System.Drawing.Size(384, 23);
+            this.tbErrorEmalAddress.TabIndex = 14;
+            // 
+            // tbErrorEmailServer
+            // 
+            this.tbErrorEmailServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.tbErrorEmailServer.Location = new System.Drawing.Point(172, 59);
+            this.tbErrorEmailServer.Name = "tbErrorEmailServer";
+            this.tbErrorEmailServer.Size = new System.Drawing.Size(384, 23);
+            this.tbErrorEmailServer.TabIndex = 12;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label57.Location = new System.Drawing.Point(14, 91);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(162, 17);
+            this.label57.TabIndex = 13;
+            this.label57.Text = "Email Address for Errors";
+            // 
+            // cbErrorEMailEnable
+            // 
+            this.cbErrorEMailEnable.AutoSize = true;
+            this.cbErrorEMailEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbErrorEMailEnable.Location = new System.Drawing.Point(41, 32);
+            this.cbErrorEMailEnable.Name = "cbErrorEMailEnable";
+            this.cbErrorEMailEnable.Size = new System.Drawing.Size(144, 21);
+            this.cbErrorEMailEnable.TabIndex = 10;
+            this.cbErrorEMailEnable.Text = "Enable Error email";
+            this.cbErrorEMailEnable.UseVisualStyleBackColor = true;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label58.Location = new System.Drawing.Point(52, 62);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(113, 17);
+            this.label58.TabIndex = 11;
+            this.label58.Text = "Email Server API";
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label59);
+            this.groupBox4.Controls.Add(this.label60);
+            this.groupBox4.Controls.Add(this.tbAdvancedView);
             this.groupBox4.Controls.Add(this.label50);
             this.groupBox4.Controls.Add(this.label51);
             this.groupBox4.Controls.Add(this.tbAskUser);
@@ -1824,67 +1893,36 @@
             this.stats_PrinterCreated.Interval = 1000;
             this.stats_PrinterCreated.Tick += new System.EventHandler(this.stats_PrinterCreated_Tick);
             // 
-            // tbErrorEmalAddress
+            // label59
             // 
-            this.tbErrorEmalAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbErrorEmalAddress.Location = new System.Drawing.Point(172, 88);
-            this.tbErrorEmalAddress.Name = "tbErrorEmalAddress";
-            this.tbErrorEmalAddress.Size = new System.Drawing.Size(384, 23);
-            this.tbErrorEmalAddress.TabIndex = 14;
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(214, 31);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(82, 13);
+            this.label59.TabIndex = 30;
+            this.label59.Text = "Advanced View";
             // 
-            // label57
+            // label60
             // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label57.Location = new System.Drawing.Point(14, 91);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(162, 17);
-            this.label57.TabIndex = 13;
-            this.label57.Text = "Email Address for Errors";
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(221, 81);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(58, 13);
+            this.label60.TabIndex = 29;
+            this.label60.Text = "OFF     ON";
             // 
-            // tbErrorEmailServer
+            // tbAdvancedView
             // 
-            this.tbErrorEmailServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.tbErrorEmailServer.Location = new System.Drawing.Point(172, 59);
-            this.tbErrorEmailServer.Name = "tbErrorEmailServer";
-            this.tbErrorEmailServer.Size = new System.Drawing.Size(384, 23);
-            this.tbErrorEmailServer.TabIndex = 12;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label58.Location = new System.Drawing.Point(52, 62);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(113, 17);
-            this.label58.TabIndex = 11;
-            this.label58.Text = "Email Server API";
-            // 
-            // cbErrorEMailEnable
-            // 
-            this.cbErrorEMailEnable.AutoSize = true;
-            this.cbErrorEMailEnable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbErrorEMailEnable.Location = new System.Drawing.Point(41, 32);
-            this.cbErrorEMailEnable.Name = "cbErrorEMailEnable";
-            this.cbErrorEMailEnable.Size = new System.Drawing.Size(144, 21);
-            this.cbErrorEMailEnable.TabIndex = 10;
-            this.cbErrorEMailEnable.Text = "Enable Error email";
-            this.cbErrorEMailEnable.UseVisualStyleBackColor = true;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.tbErrorEmalAddress);
-            this.groupBox9.Controls.Add(this.tbErrorEmailServer);
-            this.groupBox9.Controls.Add(this.label57);
-            this.groupBox9.Controls.Add(this.cbErrorEMailEnable);
-            this.groupBox9.Controls.Add(this.label58);
-            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox9.Location = new System.Drawing.Point(486, 237);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(563, 129);
-            this.groupBox9.TabIndex = 15;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Error Handling Email";
+            this.tbAdvancedView.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tbAdvancedView.LargeChange = 1;
+            this.tbAdvancedView.Location = new System.Drawing.Point(217, 51);
+            this.tbAdvancedView.Maximum = 1;
+            this.tbAdvancedView.Name = "tbAdvancedView";
+            this.tbAdvancedView.Size = new System.Drawing.Size(62, 45);
+            this.tbAdvancedView.TabIndex = 28;
+            this.tbAdvancedView.Scroll += new System.EventHandler(this.tbAdvancedView_Scroll);
             // 
             // Form1
             // 
@@ -1904,6 +1942,8 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbAskUser)).EndInit();
@@ -1940,15 +1980,12 @@
             this.tabPage7.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbAdvancedView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         public System.Windows.Forms.Label label2;
@@ -2111,6 +2148,10 @@
         internal System.Windows.Forms.Label label57;
         internal System.Windows.Forms.CheckBox cbErrorEMailEnable;
         internal System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label60;
+        internal System.Windows.Forms.TrackBar tbAdvancedView;
+        internal System.Windows.Forms.TabControl tabControl1;
     }
 }
 

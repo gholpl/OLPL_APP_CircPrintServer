@@ -14,6 +14,7 @@ using DLL_CircPrintServer.Models;
 using System.Net;
 using System.Collections.Specialized;
 using System.Threading;
+using System.Diagnostics;
 
 namespace APP_CircPrintServer.Functions
 {
@@ -51,7 +52,7 @@ namespace APP_CircPrintServer.Functions
                 }
                 else
                 {
-                    data = File.AppendText(mS.fileTempData);
+                    data = File.AppendText(controlFunctions.fixVars(mS.fileTempData));
                 }
                 string[] str_Run1 = str.Split(Environment.NewLine.ToCharArray());
                 foreach (string str4 in str_Run1)

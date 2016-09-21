@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Xml;
 using System.Drawing;
+using static DLL_CircPrintServer.Classes.controlFunctions;
+using System.Security.AccessControl;
 
 namespace DLL_CircPrintServer.Classes
 {
@@ -28,8 +30,6 @@ namespace DLL_CircPrintServer.Classes
             {
                 
                 string inputSettings = File.ReadAllText(pathEXE + "\\program.settings");
-               // string inputSettings = File.ReadAllText("C:\\Program Files (x86)\\CircPrintServer\\program.settings");
-               // MessageBox.Show(inputSettings);
                 string[] inputSettingsArray = inputSettings.Split(Environment.NewLine.ToCharArray());
                 foreach (string str in inputSettingsArray)
                 {
@@ -64,6 +64,7 @@ namespace DLL_CircPrintServer.Classes
                 if (!File.Exists(controlFunctions.fixVars("<ProgramData>\\CircPrintSoftware\\program.Settings")))
                 {
                     File.Copy(controlFunctions.fixVars("<exe>\\defaultProgram.settings"), controlFunctions.fixVars("<ProgramData>\\CircPrintSoftware\\program.Settings"));
+                    AddFileSecurity(controlFunctions.fixVars("<ProgramData>\\CircPrintSoftware\\program.Settings"), "Users", FileSystemRights.FullControl, AccessControlType.Allow);
                 }
                 List<modelSettingsCustom> set1 = controlSettings.readSettingFile(controlFunctions.fixVars("<ProgramData>\\CircPrintSoftware"));
                 foreach (modelSettingsCustom s1 in set1)
@@ -183,8 +184,8 @@ namespace DLL_CircPrintServer.Classes
                     }
                     else if (s1.name.Contains("stats"))
                     {
-                        mS.statsSwitch = s1.value;
-                        mS.statsServer = s1.value;
+                        if (s1.name.Contains("statsON")) { mS.statsSwitch = s1.value; }
+                        if (s1.name.Contains("statsServer")) { mS.statsServer = s1.value; }
                     }
                     else if (s1.name.Contains("twoPageHolds"))
                     {
@@ -197,6 +198,7 @@ namespace DLL_CircPrintServer.Classes
                     else if (s1.name.Contains("recieptTransitAsk")) { mS.switchAskTransit = s1.value; }
                     else if (s1.name.Contains("recieptSerialAsk")) { mS.switchAskSerial = s1.value; }
                     else if (s1.name.Contains("adminDebugMode")) { mS.switchAdminMode = s1.value; }
+                    else if (s1.name.Contains("viewAdvanced")) { mS.viewAdvanced = s1.value; }
                     else if (s1.name.Contains("POS"))
                     {
                         if (s1.name.Contains("POSReportingEnable")) { mS.POSEnable = bool.Parse(s1.value); }
@@ -332,6 +334,19 @@ namespace DLL_CircPrintServer.Classes
                 tc.Add(readTemplateFile(str, mS,"All"));
             }
             return tc;
+        }
+        static public void writeSetting(string category, string name, string value)
+        {
+            try
+            {
+                INIFile setting = new INIFile(controlFunctions.fixVars("<ProgramData>\\CircPrintSoftware") + "\\program.settings");
+                setting.Write(category, name, value);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("User Does Not have rights to the folder" + Environment.NewLine + e.Message);
+            }
+            
         }
     }
 }

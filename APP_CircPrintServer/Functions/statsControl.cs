@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DLL_CircPrintServer;
 using DLL_CircPrintServer.Classes;
 using DLL_CircPrintServer.Models;
+using System.Diagnostics;
 
 namespace APP_CircPrintServer.Functions
 {

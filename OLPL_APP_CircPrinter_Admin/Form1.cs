@@ -65,9 +65,9 @@ namespace OLPL_APP_CircPrinter_Admin
             populateLists.populatePrinters(this);
             mS = controlSettings.proccessSettingFile();
             fileControl.proccessSettingFile(this, mS);
+            validationControl.setupViews(this, mS);
             populateLists.populateCustomSettings(this);
             tl1 = controlSettings.getTemplates(mS);
-            fileControl.createLog(this);
             populateLists.populateTemplateListView(this);
             validationControl.testSettingsWrite(this);
             validationControl.testPrinter(this);
@@ -521,6 +521,11 @@ namespace OLPL_APP_CircPrinter_Admin
         private void tabPage3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbAdvancedView_Scroll(object sender, EventArgs e)
+        {
+            MessageBox.Show("Program needs to be restarted to see changes");
         }
     }
 }
