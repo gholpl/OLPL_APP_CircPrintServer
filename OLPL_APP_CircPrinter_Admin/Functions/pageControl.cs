@@ -11,13 +11,19 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZXing;
+using ZXing.Client.Result;
+using ZXing.Common;
+using ZXing.Rendering;
 
 namespace OLPL_APP_CircPrinter_Admin.Functions
 {
     class pageControl
-    { 
+    {
+        private static Type Renderer { get; set; }
         internal static void PrintPage(object sender, PrintPageEventArgs e)
         {
+            Renderer = typeof(BitmapRenderer);
             Form1 fc = new Form1();
             fc = (Form1)Application.OpenForms["Form1"];
             modelSettings mS = fc.mS;
@@ -201,11 +207,19 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         {
                             if(line.Contains("Transit To: "))
                             {
-                                BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-                                b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
-                                b.IncludeLabel = true;
-                                BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(),"barcode") + "d", Color.Black, Color.White, 250, 80);
+                                var barcodeWriter = new BarcodeWriter
+                                {
+                                    Format = BarcodeFormat.CODE_39,
+                                    Options = new EncodingOptions
+                                    {
+                                        Height = 80,
+                                        Margin = 0,
+                                        PureBarcode = false,
+                                        Width = 270
+                                    },
+                                    Renderer = (IBarcodeRenderer<Bitmap>)Activator.CreateInstance(Renderer)
+                                };
+                                toBcodeImage = barcodeWriter.Write(controlFunctions.readTransitTo(mS, line.Replace("Transit to: ", "").Trim(),"barcode"));
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -238,11 +252,19 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                         {
                             if (line.Contains("Item ID: "))
                             {
-                                BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-                                b.Alignment = BarcodeLib.AlignmentPositions.CENTER;
-                                b.IncludeLabel = true;
-                                BarcodeLib.TYPE type = BarcodeLib.TYPE.Codabar;
-                                toBcodeImage = b.Encode(type, "a" + line.Replace("Item ID: ", "") + "d", Color.Black, Color.White, 250, 80);
+                                var barcodeWriter = new BarcodeWriter
+                                {
+                                    Format = BarcodeFormat.CODE_39,
+                                    Options = new EncodingOptions
+                                    {
+                                        Height = 80,
+                                        Margin=0,
+                                        PureBarcode=false,
+                                        Width = 270
+                                    },
+                                    Renderer = (IBarcodeRenderer<Bitmap>)Activator.CreateInstance(Renderer)
+                                };
+                                toBcodeImage = barcodeWriter.Write(line.Replace("Item ID: ", ""));
                                 if (l1.align == "Right")
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, width - (toBcodeImage.Width), y + l1.spaceTop);
@@ -255,7 +277,6 @@ namespace OLPL_APP_CircPrinter_Admin.Functions
                                 {
                                     e.Graphics.DrawImage(toBcodeImage, e.MarginBounds.Left + (e.MarginBounds.Width / 2) - (toBcodeImage.Width / 2), y + l1.spaceTop);
                                 }
-
                                 y += l1.spaceTop;
                                 y += toBcodeImage.Height;
                             }

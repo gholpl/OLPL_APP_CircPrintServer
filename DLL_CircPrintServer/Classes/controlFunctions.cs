@@ -61,6 +61,12 @@ namespace DLL_CircPrintServer.Classes
             if (none == true) { data = input; }
             return data;
         }
+        public static Image byteArrayToImage(byte[] bytesArr)
+        {
+            MemoryStream memstr = new MemoryStream(bytesArr);
+            Image img = Image.FromStream(memstr);
+            return img;
+        }
         public static string fixVarsElement(modelElement l1, modelSettings mS)
         {
             string data = "";

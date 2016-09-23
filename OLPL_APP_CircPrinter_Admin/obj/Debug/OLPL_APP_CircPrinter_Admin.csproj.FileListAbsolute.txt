@@ -16,9 +16,7 @@ T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.csprojResolveAssemblyReference.cache
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.exe
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\OLPL_APP_CircPrinter_Admin.pdb
-\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\BarcodeLib.dll
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.dll
-\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\BarcodeLib.pdb
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.pdb
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.elementAdd.resources
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.Form1.resources
@@ -26,3 +24,6 @@ T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\obj\Debug\OLPL_APP_CircPrinter_Admin.csproj.GenerateResource.Cache
 T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.dll
 T:\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\DLL_CircPrintServer.pdb
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\zxing.dll
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\zxing.pdb
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\OLPL_APP_CircPrinter_Admin\bin\Debug\zxing.xml

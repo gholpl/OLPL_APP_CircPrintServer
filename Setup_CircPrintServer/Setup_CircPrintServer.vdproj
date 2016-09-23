@@ -33,14 +33,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_13A233AC2C824D1D9D1533C0D23FEE9A"
+        "MsmKey" = "8:_14BF64A4D9724189A15A6C8FF9EE0128"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_14BF64A4D9724189A15A6C8FF9EE0128"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_18C9A686DE396809EA70CD5A8EAACE20"
+        "OwnerKey" = "8:_492F25E10607D6F50F964D048A02FB04"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_18C9A686DE396809EA70CD5A8EAACE20"
+        "OwnerKey" = "8:_2B03BA8701EE485584147665C36145E6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_18C9A686DE396809EA70CD5A8EAACE20"
+        "OwnerKey" = "8:_46AEC41DADCB4CBDBA4E811B295CCDD4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -111,24 +123,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_550E91A7736700DB2EC609BD4860940E"
-        "OwnerKey" = "8:_2B03BA8701EE485584147665C36145E6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_550E91A7736700DB2EC609BD4860940E"
-        "OwnerKey" = "8:_46AEC41DADCB4CBDBA4E811B295CCDD4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_550E91A7736700DB2EC609BD4860940E"
-        "OwnerKey" = "8:_492F25E10607D6F50F964D048A02FB04"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_62171CFC3F774036B57928EB43FE955A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -183,12 +177,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A29EF08BA48A4BA3AC1699A8B6429C3D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A42673A8EECD45AE8032AAC6E6B54D51"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -226,7 +214,7 @@
         "Entry"
         {
         "MsmKey" = "8:_C47EADFB8214E818298DF8FC81BE7136"
-        "OwnerKey" = "8:_A15F37930D354C2AAF18523EFE8CFB1C"
+        "OwnerKey" = "8:_417EB861FB124DFAB21B4BD09D83F7D0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -238,7 +226,7 @@
         "Entry"
         {
         "MsmKey" = "8:_C47EADFB8214E818298DF8FC81BE7136"
-        "OwnerKey" = "8:_417EB861FB124DFAB21B4BD09D83F7D0"
+        "OwnerKey" = "8:_A15F37930D354C2AAF18523EFE8CFB1C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -274,24 +262,18 @@
         "Entry"
         {
         "MsmKey" = "8:_EC6F23B69E5E9DC4E805224AFBFEB27C"
-        "OwnerKey" = "8:_46AEC41DADCB4CBDBA4E811B295CCDD4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EC6F23B69E5E9DC4E805224AFBFEB27C"
         "OwnerKey" = "8:_492F25E10607D6F50F964D048A02FB04"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_EEE4C4F4757C4543A0A8917FC4F0ADA0"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_EC6F23B69E5E9DC4E805224AFBFEB27C"
+        "OwnerKey" = "8:_46AEC41DADCB4CBDBA4E811B295CCDD4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_FA4C931EAD504E0E81CD70DDFE63AC0E"
+        "MsmKey" = "8:_EEE4C4F4757C4543A0A8917FC4F0ADA0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -304,49 +286,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_13A233AC2C824D1D9D1533C0D23FEE9A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FA4C931EAD504E0E81CD70DDFE63AC0E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A15F37930D354C2AAF18523EFE8CFB1C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_46AEC41DADCB4CBDBA4E811B295CCDD4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_492F25E10607D6F50F964D048A02FB04"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EC6F23B69E5E9DC4E805224AFBFEB27C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_550E91A7736700DB2EC609BD4860940E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8EA34E14D8E888C082A8EE4D17993415"
+        "OwnerKey" = "8:_C47EADFB8214E818298DF8FC81BE7136"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -358,7 +298,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C47EADFB8214E818298DF8FC81BE7136"
+        "OwnerKey" = "8:_8EA34E14D8E888C082A8EE4D17993415"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC6F23B69E5E9DC4E805224AFBFEB27C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_492F25E10607D6F50F964D048A02FB04"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_18C9A686DE396809EA70CD5A8EAACE20"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_46AEC41DADCB4CBDBA4E811B295CCDD4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A15F37930D354C2AAF18523EFE8CFB1C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -530,37 +500,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_13A233AC2C824D1D9D1533C0D23FEE9A"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:BarcodeLib, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_13A233AC2C824D1D9D1533C0D23FEE9A"
-                    {
-                    "Name" = "8:BarcodeLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\BarcodeLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_14BF64A4D9724189A15A6C8FF9EE0128"
             {
             "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\OLPL_APP_CircPrinter_Admin\\bin\\Debug\\redmon\\setup64.exe"
@@ -579,6 +518,32 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_18C9A686DE396809EA70CD5A8EAACE20"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                }
+            "SourcePath" = "8:zxing.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_194F898374FB459B972A8DB7E9FD2597"
@@ -725,47 +690,11 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:OLPL_APP_CircPrinter_Admin, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:OLPL_APP_CircPrinter_Admin, Version=3.0.0.3, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_492F25E10607D6F50F964D048A02FB04"
-                    {
-                    "Name" = "8:OLPL_APP_CircPrinter_Admin.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:OLPL_APP_CircPrinter_Admin.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_550E91A7736700DB2EC609BD4860940E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:BarcodeLib, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_550E91A7736700DB2EC609BD4860940E"
-                    {
-                    "Name" = "8:BarcodeLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:BarcodeLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
@@ -910,11 +839,6 @@
             "AssemblyAsmDisplayName" = "8:APP_CircPrintServer_SetDeps, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_8EA34E14D8E888C082A8EE4D17993415"
-                    {
-                    "Name" = "8:APP_CircPrintServer_SetDeps.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:APP_CircPrintServer_SetDeps.exe"
             "TargetName" = "8:"
@@ -938,26 +862,6 @@
             {
             "SourcePath" = "8:\\\\fs1\\data\\tech services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\defaultProgram.settings"
             "TargetName" = "8:defaultProgram.settings"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A29EF08BA48A4BA3AC1699A8B6429C3D"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\Tech Services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\APP_CircPrintServer\\bin\\Debug\\BarcodeLib.pdb"
-            "TargetName" = "8:BarcodeLib.pdb"
             "Tag" = "8:"
             "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
             "Condition" = "8:"
@@ -1081,11 +985,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_C47EADFB8214E818298DF8FC81BE7136"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -1189,14 +1088,9 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:DLL_CircPrintServer, Version=3.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DLL_CircPrintServer, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_EC6F23B69E5E9DC4E805224AFBFEB27C"
-                    {
-                    "Name" = "8:DLL_CircPrintServer.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DLL_CircPrintServer.dll"
             "TargetName" = "8:"
@@ -1303,15 +1197,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CircPrintServer"
-        "ProductCode" = "8:{5FDFF3E5-EBFD-4F5E-94D1-DB6AE0E81928}"
-        "PackageCode" = "8:{11CEC310-5B9A-4D03-B3C4-37D8983BC12A}"
+        "ProductCode" = "8:{F8EEF7F2-071D-4905-8403-3D5D2CB97760}"
+        "PackageCode" = "8:{62F1F153-7022-4B61-A079-32EC07EF6C08}"
         "UpgradeCode" = "8:{85BA3601-F8DC-457B-82EB-2FD33D56D692}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.3.1025"
+        "ProductVersion" = "8:1.3.1032"
         "Manufacturer" = "8:Oak Lawn Public Library"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1930,34 +1824,6 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{67E80377-7226-48EE-A8FF-363C392F6EC2}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FA4C931EAD504E0E81CD70DDFE63AC0E"
-            {
-            "SourcePath" = "8:\\\\fs1\\data\\tech services\\Projects\\GitHUB\\OLPL_APP_CircPrintServer\\BarcodeLib\\obj\\Debug\\BarcodeLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4100ECB2E5204B6BACBD07B8C44E4A91"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{F8646414-0C9C-49BB-9DA3-3923BF78A398}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

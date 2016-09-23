@@ -5,9 +5,7 @@
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.exe.config
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.exe
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\APP_CircPrintServer.pdb
-\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\BarcodeLib.dll
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\DLL_CircPrintServer.dll
-\\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\BarcodeLib.pdb
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\DLL_CircPrintServer.pdb
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.exe
 \\fs1\data\Tech Services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.pdb
@@ -39,3 +37,6 @@ T:\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_Ci
 \\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.AskTransitLibrary.resources
 \\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.formPOSPayment.resources
 \\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\obj\Debug\APP_CircPrintServer.Forms.changePrinter.resources
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\zxing.dll
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\zxing.pdb
+\\fs1\data\tech services\Projects\GitHUB\OLPL_APP_CircPrintServer\APP_CircPrintServer\bin\Debug\zxing.xml
